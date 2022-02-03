@@ -1,0 +1,43 @@
+:root {
+    --accent: #5713a6;
+    --accent-light: #8758e5;
+}
+
+html, body {
+    margin: 0;
+}
+
+body {
+    padding: 1rem;
+}
+
+header {
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+header nav a {
+    padding-right: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent);
+}
+
+a:visited {
+    color: var(--accent);
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--accent-light);
+}
+
+blockquote {
+    background: #efefef;
+    padding: .5rem;
+    margin: 0;
+}
