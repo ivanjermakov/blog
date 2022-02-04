@@ -12,7 +12,8 @@ main = hakyll $ do
     route idRoute
     compile compressCssCompiler
 
-  match (fromList ["about.md", "index.md"]) $ do
+  -- TODO: highlight plain links in md
+  match (fromList ["about.md"]) $ do
     route $ setExtension "html"
     compile $
       pandocCompiler
@@ -27,7 +28,7 @@ main = hakyll $ do
         >>= loadAndApplyTemplate "templates/default.html" postCtx
         >>= relativizeUrls
 
-  create ["posts.html"] $ do
+  create ["index.html"] $ do
     route idRoute
     compile $ do
       posts <- recentFirst =<< loadAll "posts/*"
@@ -36,7 +37,7 @@ main = hakyll $ do
               `mappend` defaultContext
 
       makeItem ""
-        >>= loadAndApplyTemplate "templates/posts.html" archiveCtx
+        >>= loadAndApplyTemplate "templates/home.html" archiveCtx
         >>= loadAndApplyTemplate "templates/default.html" archiveCtx
         >>= relativizeUrls
 
