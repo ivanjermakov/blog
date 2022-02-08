@@ -1,0 +1,10 @@
+{
+  "origins": [
+	"https://giscus.app",
+	"https://blog.ivnj.org"
+  ],
+  "originsRegex": [
+	"http://localhost:[0-9]+"
+  ],
+  "defaultCommentOrder": "newest"
+}
