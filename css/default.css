@@ -1,5 +1,13 @@
+:root {
+    --fg: black;
+    --bg: white;
+    --blockquote-bg: #efefef;
+}
+
 html, body {
     margin: 0;
+    background: var(--bg);
+    color: var(--fg);
 }
 
 * {
@@ -33,7 +41,7 @@ header nav a {
 
 a {
     text-decoration: none;
-    color: black;
+    color: var(--fg);
 }
 
 a:hover {
