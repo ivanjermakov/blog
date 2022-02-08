@@ -1,5 +1,5 @@
 # blog
 
-Personal blog available at [ivanj.org](https://ivanj.com).
+Personal blog available [here](https://blog.ivnj.org).
 
 Build with [hakyll](https://jaspervdj.be/hakyll/).
