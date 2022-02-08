@@ -36,6 +36,10 @@ a {
     color: black;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
 h1 {
     margin: 1rem 0;
 }
