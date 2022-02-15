@@ -51,21 +51,39 @@ main = hakyll $ do
         >>= loadAndApplyTemplate "templates/default.html" tagsCtx
         >>= relativizeUrls
 
-  create ["index.html"] $ do
+  create ["index.html", "posts.html"] $ do
     route idRoute
     compile $ do
       posts <- recentFirst =<< loadAll "posts/*"
-      let archiveCtx =
+      let indexCtx =
             listField "posts" ctx (return posts)
-              `mappend` constField "title" "home"
+              `mappend` constField "title" "posts"
               `mappend` defaultContext
 
       makeItem ""
-        >>= loadAndApplyTemplate "templates/home.html" archiveCtx
-        >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+        >>= loadAndApplyTemplate "templates/home.html" indexCtx
+        >>= loadAndApplyTemplate "templates/default.html" indexCtx
+        >>= relativizeUrls
+
+  create ["tags.html"] $ do
+    route idRoute
+    compile $ do
+      let tagsCtx =
+            listField "tags" ctx (getAllTags tags)
+              `mappend` constField "title" "tags"
+              `mappend` defaultContext
+
+      makeItem ""
+        >>= loadAndApplyTemplate "templates/tags.html" tagsCtx
+        >>= loadAndApplyTemplate "templates/default.html" tagsCtx
         >>= relativizeUrls
 
   match "templates/*" $ compile templateBodyCompiler
+  where
+    getAllTags ts = pure . map (mkItem . fst) $ tagsMap ts
+      where
+        mkItem :: String -> Item String
+        mkItem t = Item (tagsMakeId ts t) t
 
 postCtx :: Tags -> Context String
 postCtx tags =
