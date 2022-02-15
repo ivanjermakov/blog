@@ -1,3 +1,5 @@
 .idea
 .stack-work
 _cache
+*.iml
+cleanBuild.sh
