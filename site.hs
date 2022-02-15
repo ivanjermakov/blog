@@ -20,7 +20,7 @@ main = hakyll $ do
         >>= relativizeUrls
 
   match "404.md" $ do
-    route idRoute
+    route $ setExtension "html"
     compile $
       pandocCompiler
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
