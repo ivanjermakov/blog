@@ -12,13 +12,18 @@ main = hakyll $ do
     route idRoute
     compile compressCssCompiler
 
-  -- TODO: highlight plain links in md
   match (fromList ["about.md"]) $ do
     route $ setExtension "html"
     compile $
       pandocCompiler
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
+
+  match "404.md" $ do
+    route idRoute
+    compile $
+      pandocCompiler
+        >>= loadAndApplyTemplate "templates/default.html" defaultContext
 
   tags <- buildTags "posts/*" (fromCapture "tags/*.html")
   let ctx = postCtx tags

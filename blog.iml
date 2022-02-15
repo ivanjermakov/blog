@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.stack-work" />
       <excludeFolder url="file://$MODULE_DIR$/_cache" />
+      <excludeFolder url="file://$MODULE_DIR$/_site" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -212,6 +213,5 @@
     <orderEntry type="library" name="comonad-5.0.8" level="project" />
     <orderEntry type="library" name="distributive-0.6.2.1" level="project" />
     <orderEntry type="library" name="indexed-traversable-0.1.2" level="project" />
-    <orderEntry type="library" name="client" level="application" />
   </component>
 </module>

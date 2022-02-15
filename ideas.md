@@ -12,3 +12,4 @@
 - [ ] terminal interfaces with haskell and brick
 - [ ] liquidity vs corporate benefits
 - [ ] new approach to building user interfaces (using Elm)
+- [ ] NFT: fabulous technology vs reality
