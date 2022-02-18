@@ -1,10 +1,13 @@
-<div class="inline">
-	<a class="breadcrumb" href="$url$">tags</a>
-	<span class="delimiter">/</span>
-</div>
+<div class="top">
+	<div class="inline">
+		<span class="delimiter">/</span>
+		<a class="breadcrumb" href="$url$">tags</a>
+		<span class="delimiter">/</span>
+	</div>
 
-$for(tags)$
-<div class="tag-item">
-	<a class="title" href="/tags/$title$.html">$title$</a>
+	<div class="tags">
+		$for(tags)$
+		<a href="/tags/$title$.html">$title$</a>
+		$endfor$
+	</div>
 </div>
-$endfor$

@@ -1,1 +1,1 @@
-blockquote{background:var(--blockquote-bg);padding:.5rem;margin:0}img{width:100%}
+.content blockquote{background:var(--light);padding:.5rem;margin:0}.content img{width:100%}.content a{text-decoration:underline}.content pre{background:var(--light)}.hljs{background:var(--light)!important}

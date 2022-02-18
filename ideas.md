@@ -1,7 +1,7 @@
 # Ideas
 
 - [ ] day 0
-- [ ] how this blog is made
+- [ ] how this blog is built
 - [ ] airpods on linux with pipewire
 - [ ] colored emojis in linux terminal
 - [ ] should site has dark mode setting? (dark reader vs theming)
@@ -13,3 +13,5 @@
 - [ ] liquidity vs corporate benefits
 - [ ] new approach to building user interfaces (using Elm)
 - [ ] NFT: fabulous technology vs reality
+- [ ] 4-day work week (timezone magic)
+- [ ] martian time standards

@@ -1,18 +1,23 @@
-<div class="inline">
-	<a class="breadcrumb" href="/posts.html">posts</a>
-	<span class="delimiter">/</span>
-	<a class="breadcrumb" href="$url$">$title$</a>
+<div class="top">
+	<div class="inline">
+		<span class="delimiter">/</span>
+		<a class="breadcrumb" href="/posts.html">posts</a>
+		<span class="delimiter">/</span>
+		<a class="breadcrumb" href="$url$">$title$</a>
+	</div>
+
+	<div class="blog-item">
+		<a class="title" href="$url$">&lt;&gt; $title$</a>
+		<div class="meta">
+			<p class="date">$date$</p>
+			<p class="tags">$tags$</p>
+		</div>
+	</div>
 </div>
 
-<section>
-	<h1>$title$</h1>
-	<p class="posted-on">posted on $date$</p>
-	<p class="tags">tags: $tags$</p>
-</section>
-
-<section>
+<div class="content">
 	$body$
-</section>
+</div>
 
 <script src="https://giscus.app/client.js"
         data-repo="ivanjermakov/blog"

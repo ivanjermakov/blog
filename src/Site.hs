@@ -1,6 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Hakyll
+import qualified Text.Blaze.Html5                as H
+import qualified Text.Blaze.Html5.Attributes     as A
+import Text.Blaze.Html
+import Data.List
 
 main :: IO ()
 main = hakyll $ do
@@ -12,14 +16,7 @@ main = hakyll $ do
     route idRoute
     compile compressCssCompiler
 
-  match (fromList ["about.md"]) $ do
-    route $ setExtension "html"
-    compile $
-      pandocCompiler
-        >>= loadAndApplyTemplate "templates/default.html" defaultContext
-        >>= relativizeUrls
-
-  match "404.md" $ do
+  match "*.html" $ do
     route $ setExtension "html"
     compile $
       pandocCompiler
@@ -87,6 +84,13 @@ main = hakyll $ do
 
 postCtx :: Tags -> Context String
 postCtx tags =
-  tagsField "tags" tags
-    `mappend` dateField "date" "%B %e, %Y"
+  tagsField' "tags" tags
+    `mappend` dateField "date" "%Y-%m-%d"
     `mappend` defaultContext
+    where
+      tagsField' = tagsFieldWith getTags simpleRenderLink mconcat
+      simpleRenderLink _   Nothing         = Nothing
+      simpleRenderLink tag (Just filePath) = Just $
+          H.a ! A.title (H.stringValue tag)
+              ! A.href (toValue $ toUrl filePath)
+              $ toHtml tag

@@ -17,11 +17,15 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&family=Faustina:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" title="light" href="../css/github.css" disabled="disabled">
+	<link rel="alternate stylesheet" title="dark" href="../css/github-dark.css" disabled="disabled">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
 </head>
 <body>
 <header>
 	<nav>
-		<a href="../">ivnj blog</a>
+		<a class="logo" href="../">ivnj blog</a>
 		<a href="../about.html">about</a>
 		<a href="../posts.html">posts</a>
 		<a href="../tags.html">tags</a>
@@ -29,19 +33,24 @@
 </header>
 
 <main role="main">
+	<div class="top">
 	<div class="inline">
-	<a class="breadcrumb" href="../posts.html">posts</a>
-	<span class="delimiter">/</span>
-	<a class="breadcrumb" href="../posts/2022-02-03-day-0.html">day 0</a>
+		<span class="delimiter">/</span>
+		<a class="breadcrumb" href="../posts.html">posts</a>
+		<span class="delimiter">/</span>
+		<a class="breadcrumb" href="../posts/2022-02-03-day-0.html">day 0</a>
+	</div>
+
+	<div class="blog-item">
+		<a class="title" href="../posts/2022-02-03-day-0.html">&lt;&gt; day 0</a>
+		<div class="meta">
+			<p class="date">2022-02-03</p>
+			<p class="tags"><a title="meta" href="../tags/meta.html">meta</a></p>
+		</div>
+	</div>
 </div>
 
-<section>
-	<h1>day 0</h1>
-	<p class="posted-on">posted on February  3, 2022</p>
-	<p class="tags">tags: <a title="All pages tagged 'meta'." href="../tags/meta.html">meta</a></p>
-</section>
-
-<section>
+<div class="content">
 	<p><strong>Hello and welcome!</strong> This is my blog.</p>
 <p><img src="https://c.tenor.com/F2Yu8YbVV_MAAAAC/hello-cat.gif" /></p>
 <p><em>no, it is not from the early 00’s.. styles are not there yet.</em></p>
@@ -53,11 +62,27 @@
 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</section>
+</div>
 
 <script src="https://giscus.app/client.js" data-repo="ivanjermakov/blog" data-repo-id="R_kgDOGyNZGw" data-category="blog comments" data-category-id="DIC_kwDOGyNZG84CBEZn" data-mapping="og:title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" async>
 </script>
-
 </main>
+
+<script>
+	const switchTheme = matches => {
+		if (matches) {
+			document.querySelector('link[title=dark]').removeAttribute("disabled");
+			document.querySelector('link[title=light]').setAttribute("disabled", "disabled");
+		} else {
+			document.querySelector('link[title=light]').removeAttribute("disabled");
+			document.querySelector('link[title=dark]').setAttribute("disabled", "disabled");
+		}
+	}
+	const query = '(prefers-color-scheme: dark)'
+	switchTheme(window.matchMedia(query).matches);
+	window.matchMedia(query).addEventListener('change', event => switchTheme(event.matches));
+	hljs.highlightAll();
+</script>
+
 </body>
 </html>
