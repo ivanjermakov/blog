@@ -15,7 +15,7 @@ html, body {
 }
 
 * {
-    font-family: monospace;
+    font-family: 'Overpass Mono', monospace;
     box-sizing: border-box;
 }
 
@@ -74,16 +74,16 @@ p {
     text-align: justify;
 }
 
-.inline {
+.row {
     display: flex;
     align-items: center;
 }
 
-.inline * {
+.row * {
     margin-right: .25rem;
 }
 
-.inline :last-child {
+.row :last-child {
     margin-right: 0;
 }
 
