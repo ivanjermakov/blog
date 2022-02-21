@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+import Data.List (isPrefixOf)
 import Hakyll
 import Text.Blaze.Html
 import qualified Text.Blaze.Html5 as H
@@ -103,7 +104,9 @@ buildTagPages tags ctx = do
   tagsRules tags $ \tag pattern -> do
     route idRoute
     compile $ do
-      posts <- recentFirst =<< loadAll pattern
+      taggedPages <- loadAll pattern
+      -- filter out draft tags from tagged pages
+      posts <- recentFirst . filter (\it -> "posts" `isPrefixOf` (toFilePath . itemIdentifier $ it)) $ taggedPages
       let tagsCtx =
             listField "posts" ctx (return posts)
               `mappend` constField "title" tag
