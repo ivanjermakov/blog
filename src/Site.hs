@@ -1,10 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Hakyll
-import qualified Text.Blaze.Html5                as H
-import qualified Text.Blaze.Html5.Attributes     as A
 import Text.Blaze.Html
-import Data.List
+import qualified Text.Blaze.Html5 as H
+import qualified Text.Blaze.Html5.Attributes as A
 
 main :: IO ()
 main = hakyll $ do
@@ -22,23 +21,34 @@ main = hakyll $ do
       pandocCompiler
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
 
-  tags <- buildTags "posts/*" (fromCapture "tags/*.html")
-  let ctx = postCtx tags
+  postTags <- buildTags "posts/*" (fromCapture "tags/*.html")
+  let postCtx = mkPostCtx postTags
 
   match "posts/*" $ do
     route $ setExtension "html"
     compile $
       pandocCompiler
-        >>= loadAndApplyTemplate "templates/post.html" ctx
-        >>= loadAndApplyTemplate "templates/default.html" ctx
+        >>= loadAndApplyTemplate "templates/post.html" postCtx
+        >>= loadAndApplyTemplate "templates/default.html" postCtx
         >>= relativizeUrls
 
-  tagsRules tags $ \tag pattern -> do
+  draftTags <- buildTags "drafts/*" (fromCapture "tags/*.html")
+  let draftCtx = mkPostCtx draftTags
+
+  match "drafts/*" $ do
+    route $ setExtension "html"
+    compile $
+      pandocCompiler
+        >>= loadAndApplyTemplate "templates/draft.html" draftCtx
+        >>= loadAndApplyTemplate "templates/default.html" draftCtx
+        >>= relativizeUrls
+
+  tagsRules draftTags $ \tag pattern -> do
     route idRoute
     compile $ do
       posts <- recentFirst =<< loadAll pattern
       let tagsCtx =
-            listField "posts" ctx (return posts)
+            listField "posts" postCtx (return posts)
               `mappend` constField "title" tag
               `mappend` constField "tag" tag
               `mappend` defaultContext
@@ -53,12 +63,26 @@ main = hakyll $ do
     compile $ do
       posts <- recentFirst =<< loadAll "posts/*"
       let indexCtx =
-            listField "posts" ctx (return posts)
+            listField "posts" postCtx (return posts)
               `mappend` constField "title" "posts"
               `mappend` defaultContext
 
       makeItem ""
-        >>= loadAndApplyTemplate "templates/home.html" indexCtx
+        >>= loadAndApplyTemplate "templates/posts.html" indexCtx
+        >>= loadAndApplyTemplate "templates/default.html" indexCtx
+        >>= relativizeUrls
+
+  create ["drafts.html"] $ do
+    route idRoute
+    compile $ do
+      posts <- recentFirst =<< loadAll "drafts/*"
+      let indexCtx =
+            listField "posts" postCtx (return posts)
+              `mappend` constField "title" "drafts"
+              `mappend` defaultContext
+
+      makeItem ""
+        >>= loadAndApplyTemplate "templates/drafts.html" indexCtx
         >>= loadAndApplyTemplate "templates/default.html" indexCtx
         >>= relativizeUrls
 
@@ -66,7 +90,7 @@ main = hakyll $ do
     route idRoute
     compile $ do
       let tagsCtx =
-            listField "tags" ctx (getAllTags tags)
+            listField "tags" postCtx (getAllTags postTags)
               `mappend` constField "title" "tags"
               `mappend` defaultContext
 
@@ -82,15 +106,16 @@ main = hakyll $ do
         mkItem :: String -> Item String
         mkItem t = Item (tagsMakeId ts t) t
 
-postCtx :: Tags -> Context String
-postCtx tags =
+mkPostCtx :: Tags -> Context String
+mkPostCtx tags =
   tagsField' "tags" tags
     `mappend` dateField "date" "%Y-%m-%d"
     `mappend` defaultContext
-    where
-      tagsField' = tagsFieldWith getTags simpleRenderLink mconcat
-      simpleRenderLink _   Nothing         = Nothing
-      simpleRenderLink tag (Just filePath) = Just $
-          H.a ! A.title (H.stringValue tag)
-              ! A.href (toValue $ toUrl filePath)
-              $ toHtml tag
+  where
+    tagsField' = tagsFieldWith getTags simpleRenderLink mconcat
+    simpleRenderLink _ Nothing = Nothing
+    simpleRenderLink tag (Just filePath) =
+      Just $
+        H.a ! A.title (H.stringValue tag)
+          ! A.href (toValue $ toUrl filePath)
+          $ toHtml tag

@@ -15,3 +15,5 @@
 - [ ] NFT: fabulous technology vs reality
 - [ ] 4-day work week (timezone magic)
 - [ ] martian time standards
+- [ ] monad is an interface that can bind and return
+- [ ] the only bash shortcut you will ever need (^R)
