@@ -3,6 +3,8 @@
     --dimm: #424242;
     --bg: white;
     --light: #efefef;
+    --blockquote: rgba(31, 31, 31, .1);
+    --special: #1b54bd;
 }
 
 html, body {

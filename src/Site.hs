@@ -5,6 +5,7 @@ import Hakyll
 import Text.Blaze.Html
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
+import Text.Pandoc
 
 main :: IO ()
 main = hakyll $ do
@@ -52,6 +53,7 @@ mkCtxWithTags tags =
           ! A.href (toValue $ toUrl filePath)
           $ toHtml tag
 
+buildPostPages :: Context String -> Rules ()
 buildPostPages ctx = do
   match "posts/*" $ do
     route $ setExtension "html"
@@ -61,6 +63,7 @@ buildPostPages ctx = do
         >>= loadAndApplyTemplate "templates/default.html" ctx
         >>= relativizeUrls
 
+buildPostsPage :: Context String -> Rules ()
 buildPostsPage ctx = do
   create ["index.html", "posts.html"] $ do
     route idRoute
@@ -76,15 +79,17 @@ buildPostsPage ctx = do
         >>= loadAndApplyTemplate "templates/default.html" indexCtx
         >>= relativizeUrls
 
+buildDraftPages :: Context String -> Rules ()
 buildDraftPages ctx = do
   match "drafts/*" $ do
     route $ setExtension "html"
     compile $
-      pandocCompiler
+      customPandocCompiler
         >>= loadAndApplyTemplate "templates/draft.html" ctx
         >>= loadAndApplyTemplate "templates/default.html" ctx
         >>= relativizeUrls
 
+buildDraftsPage :: Context String -> Rules ()
 buildDraftsPage ctx = do
   create ["drafts.html"] $ do
     route idRoute
@@ -100,6 +105,7 @@ buildDraftsPage ctx = do
         >>= loadAndApplyTemplate "templates/default.html" indexCtx
         >>= relativizeUrls
 
+buildTagPages :: Tags -> Context String -> Rules ()
 buildTagPages tags ctx = do
   tagsRules tags $ \tag pattern -> do
     route idRoute
@@ -118,6 +124,7 @@ buildTagPages tags ctx = do
         >>= loadAndApplyTemplate "templates/default.html" tagsCtx
         >>= relativizeUrls
 
+buildTagsPage :: Tags -> Context String -> Rules ()
 buildTagsPage tags ctx = do
   create ["tags.html"] $ do
     route idRoute
@@ -136,3 +143,33 @@ buildTagsPage tags ctx = do
       where
         mkItem :: String -> Item String
         mkItem t = Item (tagsMakeId ts t) t
+
+customPandocCompiler :: Compiler (Item String)
+customPandocCompiler = pandocCompilerWith customReaderOptions defaultHakyllWriterOptions
+  where
+    customReaderOptions =
+      def
+        { readerExtensions =
+            disableExtension Ext_smart
+              . disableExtension Ext_blank_before_blockquote
+              $ (readerExtensions defaultHakyllReaderOptions)
+                <> extensionsFromList
+                  [ Ext_pipe_tables,
+                    Ext_raw_html,
+                    Ext_native_divs,
+                    Ext_auto_identifiers,
+                    Ext_gfm_auto_identifiers,
+                    Ext_autolink_bare_uris,
+                    Ext_strikeout,
+                    Ext_task_lists,
+                    Ext_emoji,
+                    Ext_fenced_code_blocks,
+                    Ext_backtick_code_blocks,
+                    Ext_tex_math_dollars,
+                    Ext_tex_math_single_backslash,
+                    Ext_tex_math_double_backslash,
+                    Ext_implicit_header_references,
+                    Ext_implicit_figures,
+                    Ext_abbreviations
+                  ]
+        }

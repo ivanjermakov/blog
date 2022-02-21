@@ -4,5 +4,7 @@
         --dimm: #cccccc;
         --bg: #111111;
         --light: #1f1f1f;
+        --blockquote: rgba(204, 204, 204, .1);
+        --special: #3d7cf3;
     }
 }

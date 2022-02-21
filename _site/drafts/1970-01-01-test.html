@@ -21,6 +21,12 @@
 	<link rel="stylesheet" title="light" href="../css/github.css" disabled="disabled">
 	<link rel="alternate stylesheet" title="dark" href="../css/github-dark.css" disabled="disabled">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+	</script>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script>
 </head>
 <body>
 <header>
@@ -72,9 +78,9 @@
 </ol></li>
 </ol></li>
 </ol>
-<p>test.. test… test….. test?….. test!….</p>
-<p>!!!!!! ???? ,, – —</p>
-<p>“Smartypants, double quotes” and ‘single quotes’</p>
+<p>test.. test... test..... test?..... test!....</p>
+<p>!!!!!! ???? ,, -- ---</p>
+<p>"Smartypants, double quotes" and 'single quotes'</p>
 <h2 id="emphasis">Emphasis</h2>
 <p><strong>This is bold text</strong></p>
 <p><strong>This is bold text</strong></p>
@@ -83,9 +89,13 @@
 <p><del>Strikethrough</del></p>
 <h2 id="blockquotes">Blockquotes</h2>
 <blockquote>
-<p>Blockquotes can also be nested…
-&gt; …by using additional greater-than signs right next to each other…
-&gt; &gt; …or with spaces between arrows.</p>
+<p>Blockquotes can also be nested...</p>
+<blockquote>
+<p>...by using additional greater-than signs right next to each other...</p>
+<blockquote>
+<p>...or with spaces between arrows.</p>
+</blockquote>
+</blockquote>
 </blockquote>
 <h2 id="lists">Lists</h2>
 <p>Unordered</p>
@@ -107,8 +117,8 @@
 <li><p>Lorem ipsum dolor sit amet</p></li>
 <li><p>Consectetur adipiscing elit</p></li>
 <li><p>Integer molestie lorem at massa</p></li>
-<li><p>You can use sequential numbers…</p></li>
-<li><p>…or keep all the numbers as <code>1.</code></p></li>
+<li><p>You can use sequential numbers...</p></li>
+<li><p>...or keep all the numbers as <code>1.</code></p></li>
 </ol>
 <p>Start numbering with offset:</p>
 <ol start="57" type="1">
@@ -122,7 +132,7 @@
 line 1 of code
 line 2 of code
 line 3 of code</code></pre>
-<p>Block code “fences”</p>
+<p>Block code "fences"</p>
 <pre><code>Sample text here...</code></pre>
 <p>Syntax highlighting</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> foo <span class="op">=</span> <span class="kw">function</span> (bar) {</span>
@@ -130,6 +140,10 @@ line 3 of code</code></pre>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="fu">foo</span>(<span class="dv">5</span>))<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>main <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  str <span class="ot">&lt;-</span> <span class="st">&quot;Hello, World!&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  purStrLn str</span></code></pre></div>
 <h2 id="tables">Tables</h2>
 <table>
 <colgroup>
@@ -187,10 +201,14 @@ line 3 of code</code></pre>
 <h2 id="links">Links</h2>
 <p><a href="http://dev.nodeca.com">link text</a></p>
 <p><a href="http://nodeca.github.io/pica/demo/" title="title text!">link with title</a></p>
-<p>Autoconverted link https://github.com/nodeca/pica (enable linkify to see)</p>
+<p>Autoconverted link <a href="https://github.com/nodeca/pica" class="uri">https://github.com/nodeca/pica</a> (enable linkify to see)</p>
 <h2 id="images">Images</h2>
-<p><img src="https://octodex.github.com/images/minion.png" alt="Minion" />
-<img src="https://octodex.github.com/images/stormtroopocat.jpg" title="The Stormtroopocat" alt="Stormtroopocat" /></p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg" alt="Bird" />
+<figcaption aria-hidden="true">Bird</figcaption>
+</figure>
+<p>And here is some paragraph after that beautiful bird</p>
+<p><img src="https://octodex.github.com/images/stormtroopocat.jpg" title="The Stormtroopocat" /></p>
 <p>Like links, Images also have a footnote style syntax</p>
 <figure>
 <img src="https://octodex.github.com/images/dojocat.jpg" title="The Dojocat" alt="Alt text" />
@@ -202,11 +220,11 @@ line 3 of code</code></pre>
 <a href="https://www.npmjs.org/browse/keyword/markdown-it-plugin">syntax plugins</a>.</p>
 <h3 id="emojies"><a href="https://github.com/markdown-it/markdown-it-emoji">Emojies</a></h3>
 <blockquote>
-<p>Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:</p>
+<p>Classic markup: <span class="emoji" data-emoji="wink">😉</span> :crush: <span class="emoji" data-emoji="cry">😢</span> :tear: <span class="emoji" data-emoji="laughing">😆</span> <span class="emoji" data-emoji="yum">😋</span></p>
 <p>Shortcuts (emoticons): :-) :-( 8-) ;)</p>
 </blockquote>
 <p>see <a href="https://github.com/markdown-it/markdown-it-emoji#change-output">how to change output</a> with twemoji.</p>
-<h3 id="subscript-superscript"><a href="https://github.com/markdown-it/markdown-it-sub">Subscript</a> / <a href="https://github.com/markdown-it/markdown-it-sup">Superscript</a></h3>
+<h3 id="subscript--superscript"><a href="https://github.com/markdown-it/markdown-it-sub">Subscript</a> / <a href="https://github.com/markdown-it/markdown-it-sup">Superscript</a></h3>
 <ul>
 <li>19<sup>th</sup></li>
 <li>H<sub>2</sub>O</li>
@@ -249,12 +267,23 @@ Definition 2b
 </dl>
 <h3 id="abbreviations"><a href="https://github.com/markdown-it/markdown-it-abbr">Abbreviations</a></h3>
 <p>This is HTML abbreviation example.</p>
-<p>It converts “HTML”, but keep intact partial entries like “xxxHTMLyyy” and so on.</p>
-<p>*[HTML]: Hyper Text Markup Language</p>
+<p>It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.</p>
 <h3 id="custom-containers"><a href="https://github.com/markdown-it/markdown-it-container">Custom containers</a></h3>
 <div class="warning">
 <p><em>here be dragons</em></p>
 </div>
+<h3 id="formulas">Formulas</h3>
+<p>When <span class="math inline"><em>a</em> ≠ 0</span>, there are two solutions to <span class="math inline"><em>a</em><em>x</em><sup>2</sup> + <em>b</em><em>x</em> + <em>c</em> = 0</span> and they are
+<span class="math display">$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</span></p>
+<h3 id="sentence-from-newline">Sentence from newline</h3>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 <section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
@@ -282,6 +311,11 @@ Definition 2b
 	switchTheme(window.matchMedia(query).matches);
 	window.matchMedia(query).addEventListener('change', event => switchTheme(event.matches));
 	hljs.highlightAll();
+</script>
+
+<script>
+	anchors.options.placement = 'left';
+	anchors.add('h1, h2, h3, h4, h5, h6');
 </script>
 
 </body>
