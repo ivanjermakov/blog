@@ -51,6 +51,11 @@
     font-style: italic;
 }
 
+.content svg {
+    display: flex;
+    margin: auto;
+}
+
 .content a {
     text-decoration: underline;
 }

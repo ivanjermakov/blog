@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="./css/default.css" />
 	<link rel="stylesheet" href="./css/theme.css" />
 	<link rel="stylesheet" href="./css/md.css" />
+	<link rel="stylesheet" href="./css/mermaid.css" />
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,7 +57,29 @@
 
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
 <script>
+	function initMermaid(matches) {
+		const config = {
+			theme: matches ? 'dark' : 'default',
+			fontFamily: 'inherit',
+			sequence: {
+				actorFontSize: 18,
+				actorFontFamily: 'inherit',
+				noteFontFamily: 'inherit',
+				messageFontFamily: 'inherit'
+			}
+		}
+		mermaid.mermaidAPI.initialize(config)
+		document.querySelectorAll("div.diagram p").forEach(o => {
+			let insert = function (code) {
+				o.innerHTML = code;
+			};
+			mermaid.mermaidAPI.render(Math.random().toString(36).replace(/[^a-z]+/g, ''), o.textContent, insert);
+		});
+	}
+
 	const switchTheme = matches => {
 		if (matches) {
 			document.querySelector('link[title=dark]').removeAttribute("disabled");
@@ -67,15 +90,19 @@
 		}
 	}
 	const query = '(prefers-color-scheme: dark)'
-	switchTheme(window.matchMedia(query).matches);
+	let matches = window.matchMedia(query).matches;
+	switchTheme(matches);
 	window.matchMedia(query).addEventListener('change', event => switchTheme(event.matches));
 	hljs.highlightAll();
+
+	initMermaid(matches)
 </script>
 
 <script>
 	anchors.options.placement = 'left';
 	anchors.add('h1, h2, h3, h4, h5, h6');
 </script>
+
 
 </body>
 </html>

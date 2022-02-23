@@ -170,6 +170,7 @@ customPandocCompiler = pandocCompilerWith customReaderOptions defaultHakyllWrite
                     Ext_tex_math_double_backslash,
                     Ext_implicit_header_references,
                     Ext_implicit_figures,
-                    Ext_abbreviations
+                    Ext_abbreviations,
+                    Ext_fenced_divs
                   ]
         }

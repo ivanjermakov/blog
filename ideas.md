@@ -17,3 +17,6 @@
 - [ ] martian time standards
 - [ ] monad is an interface that can bind and return
 - [ ] the only bash shortcut you will ever need (^R)
+- [ ] read oriented design (read, not write; listen, not talk) (MS Teams mic on by default and vim)
+- [ ] tools is a responsibility of the library/language developers
+- [ ] 2022-02-22 magic dates of our lifetime

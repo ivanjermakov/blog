@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="../css/default.css" />
 	<link rel="stylesheet" href="../css/theme.css" />
 	<link rel="stylesheet" href="../css/md.css" />
+	<link rel="stylesheet" href="../css/mermaid.css" />
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -275,6 +276,105 @@ Definition 2b
 <h3 id="formulas">Formulas</h3>
 <p>When <span class="math inline"><em>a</em> ≠ 0</span>, there are two solutions to <span class="math inline"><em>a</em><em>x</em><sup>2</sup> + <em>b</em><em>x</em> + <em>c</em> = 0</span> and they are
 <span class="math display">$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</span></p>
+<h3 id="diagrams">Diagrams</h3>
+<h4 id="flow-chart">Flow chart</h4>
+<div class="diagram">
+<p>graph TD
+A[Christmas] --&gt;|Get money| B(Go shopping)
+B --&gt; C{Let me think}
+C --&gt;|One| D[Laptop]
+C --&gt;|Two| E[iPhone]
+C --&gt;|Three| F[fa:fa-car Car]</p>
+</div>
+<h4 id="sequence-diagram">Sequence diagram</h4>
+<div class="diagram">
+<p>sequenceDiagram
+Alice-&gt;&gt;John: Hello John, how are you?
+loop Healthcheck
+John-&gt;&gt;John: Fight against hypochondria
+end
+Note right of John: Rational thoughts!
+John--&gt;&gt;Alice: Great!
+John-&gt;&gt;Bob: How about you?
+Bob--&gt;&gt;John: Jolly good!</p>
+</div>
+<h4 id="class-diagram">Class diagram</h4>
+<div class="diagram">
+<p>classDiagram
+Animal &lt;|-- Duck
+Animal &lt;|-- Fish
+Animal &lt;|-- Zebra
+Animal : +int age
+Animal : +String gender
+Animal: +isMammal()
+Animal: +mate()
+class Duck{
++String beakColor
++swim()
++quack()
+}
+class Fish{
+-int sizeInFeet
+-canEat()
+}
+class Zebra{
++bool is_wild
++run()
+}</p>
+</div>
+<h4 id="state-diagram">State diagram</h4>
+<div class="diagram">
+<p>stateDiagram-v2
+[*] --&gt; Still
+Still --&gt; [*]
+Still --&gt; Moving
+Moving --&gt; Still
+Moving --&gt; Crash
+Crash --&gt; [*]</p>
+</div>
+<h4 id="gantt-chart">Gantt chart</h4>
+<div class="diagram">
+<p>gantt
+title A Gantt Diagram
+dateFormat YYYY-MM-DD
+section Section
+A task :a1, 2014-01-01, 30d
+Another task :after a1 , 20d
+section Another
+Task in sec :2014-01-12 , 12d
+another task : 24d</p>
+</div>
+<h4 id="pie-chart">Pie chart</h4>
+<div class="diagram">
+<p>pie title Pets adopted by volunteers
+"Dogs" : 386
+"Cats" : 85
+"Rats" : 15</p>
+</div>
+<h4 id="er-diagram">ER diagram</h4>
+<div class="diagram">
+<p>erDiagram
+CUSTOMER }|..|{ DELIVERY-ADDRESS : has
+CUSTOMER ||--o{ ORDER : places
+CUSTOMER ||--o{ INVOICE : "liable for"
+DELIVERY-ADDRESS ||--o{ ORDER : receives
+INVOICE ||--|{ ORDER : covers
+ORDER ||--|{ ORDER-ITEM : includes
+PRODUCT-CATEGORY ||--|{ PRODUCT : contains
+PRODUCT ||--o{ ORDER-ITEM : "ordered in"</p>
+</div>
+<h4 id="user-jouney">User jouney</h4>
+<div class="diagram">
+<p>journey
+title My working day
+section Go to work
+Make tea: 5: Me
+Go upstairs: 3: Me
+Do work: 1: Me, Cat
+section Go home
+Go downstairs: 5: Me
+Sit down: 3: Me</p>
+</div>
 <h3 id="sentence-from-newline">Sentence from newline</h3>
 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -297,7 +397,29 @@ It was popularised in the 1960s with the release of Letraset sheets containing L
 </div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
 <script>
+	function initMermaid(matches) {
+		const config = {
+			theme: matches ? 'dark' : 'default',
+			fontFamily: 'inherit',
+			sequence: {
+				actorFontSize: 18,
+				actorFontFamily: 'inherit',
+				noteFontFamily: 'inherit',
+				messageFontFamily: 'inherit'
+			}
+		}
+		mermaid.mermaidAPI.initialize(config)
+		document.querySelectorAll("div.diagram p").forEach(o => {
+			let insert = function (code) {
+				o.innerHTML = code;
+			};
+			mermaid.mermaidAPI.render(Math.random().toString(36).replace(/[^a-z]+/g, ''), o.textContent, insert);
+		});
+	}
+
 	const switchTheme = matches => {
 		if (matches) {
 			document.querySelector('link[title=dark]').removeAttribute("disabled");
@@ -308,15 +430,19 @@ It was popularised in the 1960s with the release of Letraset sheets containing L
 		}
 	}
 	const query = '(prefers-color-scheme: dark)'
-	switchTheme(window.matchMedia(query).matches);
+	let matches = window.matchMedia(query).matches;
+	switchTheme(matches);
 	window.matchMedia(query).addEventListener('change', event => switchTheme(event.matches));
 	hljs.highlightAll();
+
+	initMermaid(matches)
 </script>
 
 <script>
 	anchors.options.placement = 'left';
 	anchors.add('h1, h2, h3, h4, h5, h6');
 </script>
+
 
 </body>
 </html>
