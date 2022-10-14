@@ -6,7 +6,7 @@
 - [ ] colored emojis in linux terminal
 - [ ] should site has dark mode setting? (dark reader vs theming)
 - [ ] sites should be so simple that you can read them without a browser
-- [ ] my keyboard addiction
+- [ ] world of ergonomic mechanical keyboards
 - [ ] advent of code as a motivation to learn something new
 - [ ] cookie consent is a joke
 - [ ] terminal interfaces with haskell and brick
@@ -18,5 +18,5 @@
 - [ ] monad is an interface that can bind and return
 - [ ] the only bash shortcut you will ever need (^R)
 - [ ] read oriented design (read, not write; listen, not talk) (MS Teams mic on by default and vim)
-- [ ] tools is a responsibility of the library/language developers
+- [ ] tools should be a responsibility of the library/language developers
 - [ ] 2022-02-22 magic dates of our lifetime
