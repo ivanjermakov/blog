@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json.schemastore.org/package.json",
+    "name": "ivnj-blog",
+    "version": "0.0.1",
+    "description": "Personal blog",
+    "scripts": {
+        "run": "bun run src/index.ts",
+        "test": "bun test src",
+        "ci": "npm run test",
+        "clean": "rm -rf dist",
+        "fmt": "biome check --apply --linter-enabled=true --formatter-enabled=true --organize-imports-enabled=true --skip-errors src"
+    },
+    "type": "module",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/jasmine": "~4.3.5",
+        "@types/node": "~18.16.20",
+        "bun": "~1.0.23",
+        "typescript": "~5.5.3"
+    },
+    "packageManager": "pnpm@9.4.0"
+}

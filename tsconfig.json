@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig.json",
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "strict": true,
+        "noImplicitReturns": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "declaration": true,
+        "sourceMap": true,
+        "outDir": "./dist",
+        "incremental": true,
+        "lib": [
+            "es2023.array",
+            "es2023"
+        ],
+        "skipLibCheck": true
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "**/node_modules"
+    ]
+}

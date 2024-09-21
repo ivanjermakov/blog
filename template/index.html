@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="$title$"/>
+	<meta property="og:description" content="$description$"/>
+	<!--TODO: cover image-->
+	<title>$title$</title>
+	<link rel="stylesheet" href="/css/default.css"/>
+	<link rel="stylesheet" href="/css/theme.css"/>
+	<link rel="stylesheet" href="/css/md.css"/>
+	<link rel="stylesheet" href="/css/mermaid.css"/>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" title="light" href="/css/github.css" disabled="disabled">
+	<link rel="alternate stylesheet" title="dark" href="/css/github-dark.css" disabled="disabled">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script type="text/javascript" id="MathJax-script" async
+	        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+	</script>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script>
+</head>
+<body>
+<header>
+	<nav>
+		<a class="logo" href="/">ivnj blog</a>
+		<a href="/about.html">about</a>
+		<a href="/posts.html">posts</a>
+		<a href="/tags.html">tags</a>
+	</nav>
+</header>
+
+<main role="main">
+	$body$
+</main>
+
+<script src="https://unpkg.com/mermaid@11.2.1/dist/mermaid.min.js"></script>
+
+<script>
+	function initMermaid(matches) {
+		const config = {
+			theme: matches ? 'dark' : 'default',
+			fontFamily: 'inherit',
+			sequence: {
+				actorFontSize: 18,
+				actorFontFamily: 'inherit',
+				noteFontFamily: 'inherit',
+				messageFontFamily: 'inherit'
+			}
+		}
+		mermaid.initialize(config)
+		document.querySelectorAll("div.diagram p").forEach(o => {
+            o.style.whiteSpace = 'pre'
+            o.style.overflowY = 'auto'
+            let insert = code => {
+                console.log(code);
+				o.innerHTML = code;
+			};
+            try {
+			mermaid.render(Math.random().toString(36).replace(/[^a-z]+/g, ''), o.textContent, insert);
+            } catch (e) {
+                console.error(e);
+                o.innerHTML = e;
+            }
+		});
+	}
+
+	const switchTheme = matches => {
+		if (matches) {
+			document.querySelector('link[title=dark]').removeAttribute("disabled");
+			document.querySelector('link[title=light]').setAttribute("disabled", "disabled");
+		} else {
+			document.querySelector('link[title=light]').removeAttribute("disabled");
+			document.querySelector('link[title=dark]').setAttribute("disabled", "disabled");
+		}
+	}
+	const query = '(prefers-color-scheme: dark)'
+	let matches = window.matchMedia(query).matches;
+	switchTheme(matches);
+	window.matchMedia(query).addEventListener('change', event => switchTheme(event.matches));
+	hljs.highlightAll();
+
+	initMermaid(matches)
+</script>
+
+<script>
+	anchors.options.placement = 'left';
+	anchors.add('h1, h2, h3, h4, h5, h6');
+</script>
+
+
+</body>
+</html>

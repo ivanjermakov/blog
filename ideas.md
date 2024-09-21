@@ -1,0 +1,24 @@
+# Ideas
+
+- [ ] day 0
+- [ ] how this blog is built
+- [ ] airpods on linux with pipewire
+- [ ] colored emojis in linux terminal
+- [ ] should site has dark mode setting? (dark reader vs theming)
+- [ ] sites should be so simple that you can read them without a browser
+- [ ] world of ergonomic mechanical keyboards
+- [ ] advent of code as a motivation to learn something new
+- [ ] cookie consent is a joke
+- [ ] terminal interfaces with haskell and brick
+- [ ] liquidity vs corporate benefits
+- [ ] new approach to building user interfaces (using Elm)
+- [ ] NFT: fabulous technology vs reality
+- [ ] 4-day work week (timezone magic)
+- [ ] martian time standards
+- [ ] monad is an interface that can bind and return
+- [ ] the only bash shortcut you will ever need (^R)
+- [ ] read oriented design (read, not write; listen, not talk) (MS Teams mic on by default and vim)
+- [ ] tools should be a responsibility of the library/language developers
+- [ ] 2022-02-22 magic dates of our lifetime
+- [ ] social networks without community moderation are dangerous to society
+- [ ] how LLMs are suppose to invent new information if they live in a sealed box
