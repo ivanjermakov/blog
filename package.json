@@ -4,7 +4,9 @@
     "version": "0.0.1",
     "description": "Personal blog",
     "scripts": {
-        "run": "bun run src/index.ts",
+        "build": "./build.sh",
+        "build:site": "bun run src/index.ts",
+        "build:human-inventions-and-discoveries": "bun run post/human-inventions-and-discoveries/index.ts",
         "test": "bun test src",
         "ci": "npm run test",
         "clean": "rm -rf dist",
@@ -17,9 +19,13 @@
     "license": "MIT",
     "devDependencies": {
         "@types/jasmine": "~4.3.5",
+        "@types/jsdom": "^21.1.7",
         "@types/node": "~18.16.20",
         "bun": "~1.0.23",
         "typescript": "~5.5.3"
+    },
+    "dependencies": {
+        "jsdom": "~26.0.0"
     },
     "packageManager": "pnpm@9.4.0"
 }
