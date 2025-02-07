@@ -4,6 +4,7 @@ export type PostMetainfo = {
     description: string
     date: string
     draft?: boolean
+    include?: string[]
 }
 
 export const postsMeta: Record<string, PostMetainfo> = {
@@ -12,6 +13,13 @@ export const postsMeta: Record<string, PostMetainfo> = {
         tags: ['meta'],
         description: 'my blog was born here, post number zero',
         date: '2022-02-03'
+    },
+    'human-inventions-and-discoveries': {
+        title: 'greatest human inventions and discoveries',
+        tags: ['history'],
+        description: '',
+        date: '2025-01-07',
+        include: ['index.js', 'data.json']
     },
     test: {
         title: 'test post',

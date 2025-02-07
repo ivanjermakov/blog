@@ -1,6 +1,6 @@
 import { spawn } from 'child_process'
-import { existsSync } from 'fs'
-import { cp, mkdir, readFile, readdir, writeFile } from 'fs/promises'
+import { existsSync, mkdirSync } from 'fs'
+import { copyFile, cp, mkdir, readFile, readdir, writeFile } from 'fs/promises'
 import { PostMetainfo, postsMeta } from './posts-meta'
 
 const tags = [
@@ -35,16 +35,30 @@ const outPostDirPath = `${outDirPath}/post`
 await mkdir(outPostDirPath, { recursive: true })
 await Promise.all(
     Object.entries(postsMeta).map(async ([pName, pm]) => {
+        const pathDir = `${postDirPath}/${pName}`
         const pathMd = `${postDirPath}/${pName}.md`
         const pathHtml = `${postDirPath}/${pName}.html`
-        if (existsSync(pathMd)) {
-            const postMd = (await readFile(`${postDirPath}/${pName}.md`)).toString()
+        if (existsSync(pathDir)) {
+            const postPath = `${outPostDirPath}/${pName}`
+            mkdirSync(postPath, { recursive: true })
+            await Promise.all(
+                (pm.include ?? []).map(i => {
+                    console.info(`${pathDir}/${i} -> ${postPath}/${i}`)
+                    copyFile(`${pathDir}/${i}`, `${postPath}/${i}`)
+                })
+            )
+            const content = (await readFile(`${pathDir}/index.html`)).toString()
+            const postPage = await makePostPage(pName, pm, content)
+            const postHtmlPath = `${outPostDirPath}/${pName}.html`
+            console.info(postHtmlPath)
+            await writeFile(postHtmlPath, postPage)
+        } else if (existsSync(pathMd)) {
+            const postMd = (await readFile(pathMd)).toString()
             const postPage = await makePostPage(pName, pm, await mdToHtml(postMd))
             const postPath = `${outPostDirPath}/${pName}.html`
-            console.info(postPath)
             await writeFile(postPath, postPage)
         } else if (existsSync(pathHtml)) {
-            const content = (await readFile(`${postDirPath}/${pName}.md`)).toString()
+            const content = (await readFile(pathHtml)).toString()
             const postPage = await makePostPage(pName, pm, content)
             const postPath = `${outPostDirPath}/${pName}.html`
             console.info(postPath)
