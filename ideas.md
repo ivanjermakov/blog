@@ -22,3 +22,34 @@
 - [ ] 2022-02-22 magic dates of our lifetime
 - [ ] social networks without community moderation are dangerous to society
 - [ ] how LLMs are suppose to invent new information if they live in a sealed box
+- [ ] programming language semantics/syntax we go by just because first compilers where not smart enough
+    - semicolons
+    - declare before use
+    - excessive punctuaction
+- [ ] why you should make your next game in HTML
+    - game distribution is easy
+    - immediately cross-platform with Electron/Tauri
+    - you get the richest UI support
+    - always online
+    - JS performance is often not the bottleneck, and gets faster every day, and WASM is available for critical pieces
+    - WebGL has on par performance with WebGL
+- [ ] so you want to make a programming language
+    - what it takes
+    - realistic scope for one dev
+    - ways to go around it
+    - simple problems that look complicated and complicated problems that look similar
+    - near impossible to get semantics right on the first try
+- [ ] all of these are related in some way:
+    - coroutines
+    - generators (yield)
+    - async/await
+    - futures/promises
+    - fibers
+    - (Delimited, scoped) continuations
+    - monads
+    - algebraic effects
+    what approach a language of the future should look at?
+- [ ] kinds of tasks in programming
+    - e.g. parsing, mapping, calculating in a loop, delegation, etc.
+- [ ] inventions & discoveries of the human race
+    - log time scale

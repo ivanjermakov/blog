@@ -1,4 +1,5 @@
 import { spawn } from 'child_process'
+import { existsSync } from 'fs'
 import { cp, mkdir, readFile, readdir, writeFile } from 'fs/promises'
 import { PostMetainfo, postsMeta } from './posts-meta'
 
@@ -34,11 +35,21 @@ const outPostDirPath = `${outDirPath}/post`
 await mkdir(outPostDirPath, { recursive: true })
 await Promise.all(
     Object.entries(postsMeta).map(async ([pName, pm]) => {
-        const postMd = (await readFile(`${postDirPath}/${pName}.md`)).toString()
-        const postPage = await makePostPage(pName, pm, postMd)
-        const postPath = `${outPostDirPath}/${pName}.html`
-        console.info(postPath)
-        await writeFile(postPath, postPage)
+        const pathMd = `${postDirPath}/${pName}.md`
+        const pathHtml = `${postDirPath}/${pName}.html`
+        if (existsSync(pathMd)) {
+            const postMd = (await readFile(`${postDirPath}/${pName}.md`)).toString()
+            const postPage = await makePostPage(pName, pm, await mdToHtml(postMd))
+            const postPath = `${outPostDirPath}/${pName}.html`
+            console.info(postPath)
+            await writeFile(postPath, postPage)
+        } else if (existsSync(pathHtml)) {
+            const content = (await readFile(`${postDirPath}/${pName}.md`)).toString()
+            const postPage = await makePostPage(pName, pm, content)
+            const postPath = `${outPostDirPath}/${pName}.html`
+            console.info(postPath)
+            await writeFile(postPath, postPage)
+        }
     })
 )
 
@@ -97,19 +108,17 @@ function makeIndexPage(forTag?: string): string {
     })
 }
 
-async function makePostPage(name: string, metainfo: PostMetainfo, md: string): Promise<string> {
-    const postContent = await mdToHtml(md)
+async function makePostPage(name: string, metainfo: PostMetainfo, content: string): Promise<string> {
     const tagsFragment = metainfo.tags.map(t => replaceVariables(templates['tag.html'], { title: t })).join('')
     const postFragment = replaceVariables(templates['post.html'], {
-        url: `${postDirPath}/${name}.html`,
         title: metainfo.title,
         date: metainfo.date,
         tags: tagsFragment,
-        body: postContent
+        body: content
     })
     return replaceVariables(templates['index.html'], {
-        title: 'ivnj blog',
-        description: 'ivnj blog',
+        title: metainfo.title,
+        description: metainfo.description,
         body: postFragment
     })
 }
