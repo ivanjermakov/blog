@@ -54,12 +54,20 @@ nav {
 
 header nav a {
     padding-right: 1rem;
+    text-decoration: none;
 }
 
 a {
-    text-decoration: none;
     color: var(--fg);
     cursor: pointer;
+}
+
+a:visited {
+    color: var(--dimm);
+}
+
+a.title {
+    text-decoration: none;
 }
 
 a:hover {
