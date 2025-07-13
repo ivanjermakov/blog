@@ -8,6 +8,13 @@ export type PostMetainfo = {
 }
 
 export const postsMeta: Record<string, PostMetainfo> = {
+    test: {
+        title: 'test post',
+        tags: ['meta', 'tag1', 'tag2'],
+        description: 'test post',
+        date: '1970-01-01',
+        draft: true
+    },
     'day-0': {
         title: 'day 0',
         tags: ['meta'],
@@ -20,13 +27,6 @@ export const postsMeta: Record<string, PostMetainfo> = {
         description: '',
         date: '2025-01-07',
         include: ['index.js', 'data.json'],
-        draft: true
-    },
-    test: {
-        title: 'test post',
-        tags: ['meta', 'tag1', 'tag2'],
-        description: 'test post',
-        date: '1970-01-01',
         draft: true
     },
     'function-coloring-is-inevitable': {

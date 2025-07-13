@@ -88,7 +88,7 @@ writeFile(notFoundPagePath, notFoundPage)
 const aboutPage = replaceVariables(templates['index.html'], {
     title: 'ivnj - about',
     description: 'about',
-    body: templates['about.html']
+    body: await mdToHtml(templates['about.md'])
 })
 const aboutPagePath = `${outDirPath}/about.html`
 console.info(aboutPagePath)
@@ -125,6 +125,7 @@ function makeIndexPage(forTag?: string): string {
 async function makePostPage(name: string, metainfo: PostMetainfo, content: string): Promise<string> {
     const tagsFragment = metainfo.tags.map(t => replaceVariables(templates['tag.html'], { title: t })).join('')
     const postFragment = replaceVariables(templates['post.html'], {
+        url: `${name}.html`,
         title: metainfo.title,
         date: metainfo.date,
         tags: tagsFragment,
