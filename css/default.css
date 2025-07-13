@@ -29,7 +29,7 @@ html {
 body {
     padding: 1rem;
     width: 100%;
-    max-width: 1280px;
+    max-width: 960px;
 }
 
 header {
@@ -47,9 +47,10 @@ nav {
     width: 100%;
 }
 
-pre {
+pre, code {
     font-family: 'Nunito Sans', serif;
     font-variant: none;
+    font-size: 1rem;
 }
 
 .logo {
