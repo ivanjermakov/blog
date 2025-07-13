@@ -45,6 +45,5 @@ const query = '(prefers-color-scheme: dark)'
 const matches = window.matchMedia(query).matches
 switchTheme(matches)
 window.matchMedia(query).addEventListener('change', event => switchTheme(event.matches))
-hljs.highlightAll()
 
 initMermaid(matches)

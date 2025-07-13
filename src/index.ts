@@ -3,6 +3,12 @@ import { existsSync, mkdirSync } from 'fs'
 import { copyFile, cp, mkdir, readFile, readdir, writeFile } from 'fs/promises'
 import { PostMetainfo, postsMeta } from './posts-meta'
 
+const mermaidImport = `\
+<script src="https://unpkg.com/mermaid@11.2.1/dist/mermaid.min.js"></script>
+<script src="/js/mermaid.js"></script>`
+const mathjaxImport =
+    '<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>'
+
 const tags = [
     ...new Set(
         Object.values(postsMeta)
@@ -68,6 +74,7 @@ await Promise.all(
             const postMd = (await readFile(pathMd)).toString()
             const postPage = await makePostPage(pName, pm, await mdToHtml(postMd))
             const postPath = `${outPostDirPath}/${pName}.html`
+            console.info(postPath)
             await writeFile(postPath, postPage)
         } else if (existsSync(pathHtml)) {
             const content = (await readFile(pathHtml)).toString()
@@ -146,7 +153,9 @@ async function makePostPage(name: string, metainfo: PostMetainfo, content: strin
     return replaceVariables(templates['index.html'], {
         title: metainfo.title,
         description: metainfo.description,
-        main: postFragment
+        main: postFragment,
+        body: metainfo.features?.includes('mermaid') ? mermaidImport : '',
+        head: metainfo.features?.includes('mathjax') ? mathjaxImport : ''
     })
 }
 

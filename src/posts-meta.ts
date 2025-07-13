@@ -5,7 +5,10 @@ export type PostMetainfo = {
     date: string
     draft?: boolean
     include?: string[]
+    features?: Feature[]
 }
+
+export type Feature = 'mermaid' | 'mathjax'
 
 export const postsMeta: Record<string, PostMetainfo> = {
     test: {
@@ -13,6 +16,7 @@ export const postsMeta: Record<string, PostMetainfo> = {
         tags: ['meta', 'tag1', 'tag2'],
         description: 'test post',
         date: '1970-01-01',
+        features: ['mermaid', 'mathjax'],
         draft: true
     },
     'day-0': {
