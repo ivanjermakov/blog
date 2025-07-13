@@ -139,8 +139,8 @@ to find out for themselves.
 
 ## Further reading
 
-  - [Zig overview](https://ziglang.org/learn/overview/)
   - [What Color is Your Function?](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/)
+  - [Zig overview](https://ziglang.org/learn/overview/)
   - [What is Zig's “Colorblind” Async/Await?](https://kristoff.it/blog/zig-colorblind-async-await/)
   - [sans-IO: The secret to effective Rust for network services](https://www.firezone.dev/blog/sans-io)
   - [Why Algebraic Effects?](https://antelang.org/blog/why_effects/)
