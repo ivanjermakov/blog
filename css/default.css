@@ -48,7 +48,7 @@ nav {
 }
 
 pre, code {
-    font-family: 'Nunito Sans', serif;
+    font-family: 'Overpass Mono', monospace;
     font-variant: none;
     font-size: 1rem;
 }
