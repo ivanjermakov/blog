@@ -147,3 +147,7 @@ p {
 .top .blog-item {
     margin: 0;
 }
+
+.giscus {
+    margin-top: 1rem;
+}
