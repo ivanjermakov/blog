@@ -65,8 +65,8 @@ And compare it to semantically similar functions in Node.js:
 
 ```typescript
 // red
-function saveData(data: []const u8): void
-function saveFile(file: std.File, data: []const u8): void
+function saveData(data: Uint8Array): void
+function saveFile(file: string, data: Uint8Array): void
 
 // blue
 async function saveData(data: Uint8Array): Promise<void>
@@ -79,54 +79,72 @@ Difference is easy to spot:
 return a promise (or take callback `() => void` as a parameter)
   - in Zig, <span style="color: #7777ff">blue</span> functions **take `std.Io` parameter**!
 
-But there is a problem: with this new I/O approach *it is impossible* to write to a file without `std.Io`!
+But there is a catch: with this new I/O approach *it is impossible* to write to a file without `std.Io`!
 
 ```zig
 // impossible without io
 fn saveData(data: []const u8) !void
 ```
 
-Semantically, passing `std.Io` to every function is no different from making every Node.js function async and returning a promise.
+Semantically, passing `std.Io` to every function is no different from making every Node.js function async and
+returning a promise.
+Zig shifts function coloring from blocking/non-blocking choice to io/non-io.
 
 ## Inevitable?
 
 So does Zig solve a function coloring problem? Depends on who you ask:
 
+- Yes, because function type signature is the same
 - Yes, because for the caller any function is blocking
+- Yes, because function can be called in both blocking and non-blocking contexts
+- No, because functions doing I/O require parameter `std.Io`
+- No, because I/O functions can only be called from other I/O functions
 - No, because function may return the result of `std.Io.async()`, which only makes sense for functions doing async:
   ``` zig
   fn saveData(io: Io, data: []const u8) !std.Future {
       return io.async(saveFile, .{io, data, "saveA.txt"});
   }
   ```
-- Yes, because function type signature is the same
-- No, because functions doing I/O require parameter `std.Io`
-- Yes, because function can be called in both blocking and non-blocking contexts
 - No, because `std.Io` interface has runtime-sensitive functions such as `asyncConcurrent` and I/O implementation might
 not support it
 
-Function coloring is not about the syntax, not about the function's type signature - it is about semantics and behavior
-of the function.
-And in my understanding, this problem is not solvable.
-Because there will always be functions that are sensitive to I/O runtime they are within.
-Some functions are inherently blocking, some inherently non-blocking.
-Some APIs have [a way](https://man7.org/linux/man-pages/man2/fcntl.2.html) to make blocking functions behaving in
+In my opinion, function coloring is not about the syntax, not about the function's type signature -
+it is about semantics and behavior of the function.
+And I don't think this problem is solvable:
+
+  - There will always be functions that are sensitive to I/O runtime they are within.
+  - Some functions are inherently blocking, some inherently non-blocking.
+  - Some APIs have [a way](https://man7.org/linux/man-pages/man2/fcntl.2.html) to make blocking functions behaving in
 non-blocking manner.
-Does this mean that the programming language needs to be able to encode them the same?
+
+Does this mean that the programming language needs to treat them in the same way?
 
 ## Ergonomics
 
-But most complains related to function coloring are not that blocking and non-blocking functions needs to be handled
+But most complains related to function coloring are not that blocking and non-blocking functions need to be handled
 differently.
-Complains are about how *inconvenient* these differences are to work with.
+Complains are about how *inconvenient* it is to work with these differences.
 Understanding this moves the problem from computer science to the programming language design - how to make it more
 convenient?
 
-And this is where I think that Zig's new IO design does a great job.
+And this is where I think Zig's new I/O design does a great job.
 It unifies the way of working with both execution models elegantly.
 Although passing `std.Io` everywhere seems to be annoying, it seems to work well for passing `std.mem.Allocator` to any
 function that allocates.
 It keeps intent clear and gives great flexibility to the caller.
-And same as with allocation, not every bit of behavior needs to be expressed in the type signature:
+
+And as with allocation, not every bit of behavior needs to be expressed in the type signature:
 function does not tell who owns allocated memory, developer either needs to read the docs or go through the code
 to find out for themselves.
+
+## Further reading
+
+  - [Zig overview](https://ziglang.org/learn/overview/)
+  - [What Color is Your Function?](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/)
+  - [What is Zig's “Colorblind” Async/Await?](https://kristoff.it/blog/zig-colorblind-async-await/)
+  - [sans-IO: The secret to effective Rust for network services](https://www.firezone.dev/blog/sans-io)
+  - [Why Algebraic Effects?](https://antelang.org/blog/why_effects/)
+  - [Tokio crate documentation](https://docs.rs/tokio/latest/tokio/index.html)
+  - [Async IO in Python: A Complete Walkthrough](https://realpython.com/async-io-python/)
+  - [Notes on structured concurrency](https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/)
+  - [Async-Await ≈ Generators + Promises](https://hackernoon.com/async-await-generators-promises-51f1a6ceede2)
