@@ -7,17 +7,16 @@
     --special: #1b54bd;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 html, body {
+    font-family: 'Nunito Sans', serif;
     margin: 0;
     background: var(--bg);
     color: var(--fg);
     font-size: 16px;
-}
-
-* {
-    font-family: 'Overpass Mono', monospace;
-    font-variant: none;
-    box-sizing: border-box;
 }
 
 html {
@@ -46,6 +45,11 @@ nav {
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
+}
+
+pre {
+    font-family: 'Nunito Sans', serif;
+    font-variant: none;
 }
 
 .logo {
