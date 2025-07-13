@@ -30,6 +30,11 @@ const indexPagePath = `${outDirPath}/index.html`
 console.info(indexPagePath)
 writeFile(indexPagePath, indexPage)
 
+const rssPage = makeRssFeed()
+const rssPagePath = `${outDirPath}/index.xml`
+console.info(rssPagePath)
+writeFile(rssPagePath, rssPage)
+
 const postDirPath = 'post'
 const outPostDirPath = `${outDirPath}/post`
 await mkdir(outPostDirPath, { recursive: true })
@@ -194,4 +199,33 @@ function mdToHtml(md: string): Promise<string> {
         process.stdin.write(md)
         process.stdin.end()
     })
+}
+
+function makeRssFeed(): string {
+    const now = new Date().toUTCString()
+    const items = Object.entries(postsMeta)
+        .filter(([, pm]) => pm.draft !== true)
+        .map(([name, pm]) => {
+            const link = `https://blog.ivnj.org/post/${name}.html`
+            return `\
+        <item>
+            <title>${pm.title}</title>
+            <link>${link}</link>
+            <guid>${link}</guid>
+            <pubDate>${new Date(pm.date).toUTCString()}</pubDate>
+        </item>`
+        })
+        .join('\n')
+    return `\
+<rss version="2.0">
+	<channel>
+		<title>Ivan Ermakov's blog</title>
+		<link>https://blog.ivnj.org/</link>
+		<description>Recent posts on Ivan Ermakov's blog</description>
+		<generator>https://github.com/ivanjermakov/blog</generator>
+		<language>en-us</language>
+		<lastBuildDate>${now}</lastBuildDate>
+${items}
+	</channel>
+</rss>`
 }

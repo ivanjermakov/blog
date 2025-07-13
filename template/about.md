@@ -11,3 +11,4 @@ Hi! I'm Ivan, a passionate software engineer!
 
 More info on my [website](https://ivnj.org).
 
+[RSS Feed](index.xml)
