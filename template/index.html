@@ -41,63 +41,16 @@
 </header>
 
 <main role="main">
-	$body$
+	$main$
 </main>
-
-<script src="https://unpkg.com/mermaid@11.2.1/dist/mermaid.min.js"></script>
-
-<script>
-	function initMermaid(matches) {
-		const config = {
-			theme: matches ? 'dark' : 'default',
-			fontFamily: 'inherit',
-			sequence: {
-				actorFontSize: 18,
-				actorFontFamily: 'inherit',
-				noteFontFamily: 'inherit',
-				messageFontFamily: 'inherit'
-			}
-		}
-		mermaid.initialize(config)
-		document.querySelectorAll("div.diagram p").forEach(o => {
-            o.style.whiteSpace = 'pre'
-            o.style.overflowY = 'auto'
-            let insert = code => {
-                console.log(code);
-				o.innerHTML = code;
-			};
-            try {
-			mermaid.render(Math.random().toString(36).replace(/[^a-z]+/g, ''), o.textContent, insert);
-            } catch (e) {
-                console.error(e);
-                o.innerHTML = e;
-            }
-		});
-	}
-
-	const switchTheme = matches => {
-		if (matches) {
-			document.querySelector('link[title=dark]').removeAttribute("disabled");
-			document.querySelector('link[title=light]').setAttribute("disabled", "disabled");
-		} else {
-			document.querySelector('link[title=light]').removeAttribute("disabled");
-			document.querySelector('link[title=dark]').setAttribute("disabled", "disabled");
-		}
-	}
-	const query = '(prefers-color-scheme: dark)'
-	let matches = window.matchMedia(query).matches;
-	switchTheme(matches);
-	window.matchMedia(query).addEventListener('change', event => switchTheme(event.matches));
-	hljs.highlightAll();
-
-	initMermaid(matches)
-</script>
 
 <script>
 	anchors.options.placement = 'left';
 	anchors.add('h1, h2, h3, h4, h5, h6');
 </script>
 
+<script src="https://unpkg.com/mermaid@11.2.1/dist/mermaid.min.js"></script>
+<script src="/js/mermaid.js"></script>
 
 </body>
 </html>

@@ -23,7 +23,14 @@ const outDirPath = 'dist'
 await mkdir(outDirPath, { recursive: true })
 
 const cssDirPath = 'css'
-await cp(cssDirPath, `${outDirPath}/${cssDirPath}`, { recursive: true })
+const outCssDirPath = `${outDirPath}/${cssDirPath}`
+console.info(outCssDirPath)
+await cp(cssDirPath, outCssDirPath, { recursive: true })
+
+const jsDirPath = 'js'
+const outJsDirPath = `${outDirPath}/${jsDirPath}`
+console.info(outJsDirPath)
+await cp(jsDirPath, outJsDirPath, { recursive: true })
 
 const indexPage = makeIndexPage()
 const indexPagePath = `${outDirPath}/index.html`
@@ -84,7 +91,7 @@ tags.map(tag => {
 const notFoundPage = replaceVariables(templates['index.html'], {
     title: 'ivnj - 404',
     description: 'not found',
-    body: templates['404.html']
+    main: templates['404.html']
 })
 const notFoundPagePath = `${outDirPath}/404.html`
 console.info(notFoundPagePath)
@@ -93,7 +100,7 @@ writeFile(notFoundPagePath, notFoundPage)
 const aboutPage = replaceVariables(templates['index.html'], {
     title: 'ivnj - about',
     description: 'about',
-    body: await mdToHtml(templates['about.md'])
+    main: await mdToHtml(templates['about.md'])
 })
 const aboutPagePath = `${outDirPath}/about.html`
 console.info(aboutPagePath)
@@ -123,7 +130,7 @@ function makeIndexPage(forTag?: string): string {
     return replaceVariables(templates['index.html'], {
         title: 'ivnj blog',
         description: 'ivnj blog',
-        body: postItemsFragment
+        main: postItemsFragment
     })
 }
 
@@ -134,12 +141,12 @@ async function makePostPage(name: string, metainfo: PostMetainfo, content: strin
         title: metainfo.title,
         date: metainfo.date,
         tags: tagsFragment,
-        body: content
+        content
     })
     return replaceVariables(templates['index.html'], {
         title: metainfo.title,
         description: metainfo.description,
-        body: postFragment
+        main: postFragment
     })
 }
 
@@ -149,7 +156,7 @@ function makeTagsPage(): string {
     return replaceVariables(templates['index.html'], {
         title: 'ivnj blog',
         description: 'ivnj blog',
-        body: tagsFragment
+        main: tagsFragment
     })
 }
 
