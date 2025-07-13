@@ -16,6 +16,7 @@ html, body {
 
 * {
     font-family: 'Overpass Mono', monospace;
+    font-variant: none;
     box-sizing: border-box;
 }
 
@@ -71,7 +72,6 @@ a:hover {
 }
 
 p {
-    text-align: justify;
 }
 
 .row {

@@ -53,3 +53,9 @@
     - e.g. parsing, mapping, calculating in a loop, delegation, etc.
 - [ ] inventions & discoveries of the human race
     - log time scale
+- [ ] source code is your friend
+    - code is the source of truth
+    - don't be afraid to look at others code
+    - technologies below you were made by smart people, all the way down
+    - abstraction is for those who fear understanding the problem
+    - most hard problems are solved, complexity is artificial
