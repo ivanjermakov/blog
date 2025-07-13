@@ -150,12 +150,16 @@ async function makePostPage(name: string, metainfo: PostMetainfo, content: strin
         tags: tagsFragment,
         content
     })
+    let head = ''
+    if (metainfo.features?.includes('mathjax')) head += mathjaxImport
+    if (metainfo.include?.includes('index.js')) head += `<script type="module" src="${name}/index.js"></script>`
+
     return replaceVariables(templates['index.html'], {
         title: metainfo.title,
         description: metainfo.description,
         main: postFragment,
         body: metainfo.features?.includes('mermaid') ? mermaidImport : '',
-        head: metainfo.features?.includes('mathjax') ? mathjaxImport : ''
+        head
     })
 }
 
@@ -170,7 +174,9 @@ function makeTagsPage(): string {
 }
 
 function replaceVariables(template: string, vars: Record<string, string>): string {
-    return Object.entries(vars).reduce((t, [vk, v]) => t.replaceAll(`$${vk}$`, v), template)
+    const templated = Object.entries(vars).reduce((t, [vk, v]) => t.replaceAll(`$${vk}$`, v), template)
+    const cleaned = templated.replaceAll(/\$.*\$/g, '')
+    return cleaned
 }
 
 function mdToHtml(md: string): Promise<string> {

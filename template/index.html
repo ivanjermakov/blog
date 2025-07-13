@@ -23,7 +23,6 @@
 	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script>
 
-	<script type="module" src="human-inventions-and-discoveries/index.js"></script>
     $head$
 </head>
 <body>
@@ -46,6 +45,19 @@
 </script>
 
 <script>
+    const switchTheme = matches => {
+        if (matches) {
+            document.querySelector('link[title=dark]').removeAttribute('disabled')
+            document.querySelector('link[title=light]').setAttribute('disabled', 'disabled')
+        } else {
+            document.querySelector('link[title=light]').removeAttribute('disabled')
+            document.querySelector('link[title=dark]').setAttribute('disabled', 'disabled')
+        }
+    }
+    const query = '(prefers-color-scheme: dark)'
+    const matches = window.matchMedia(query).matches
+    switchTheme(matches)
+    window.matchMedia(query).addEventListener('change', event => switchTheme(event.matches))
     hljs.highlightAll()
 </script>
 

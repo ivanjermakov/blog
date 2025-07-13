@@ -32,18 +32,5 @@ function initMermaid(matches) {
     })
 }
 
-const switchTheme = matches => {
-    if (matches) {
-        document.querySelector('link[title=dark]').removeAttribute('disabled')
-        document.querySelector('link[title=light]').setAttribute('disabled', 'disabled')
-    } else {
-        document.querySelector('link[title=light]').removeAttribute('disabled')
-        document.querySelector('link[title=dark]').setAttribute('disabled', 'disabled')
-    }
-}
-const query = '(prefers-color-scheme: dark)'
-const matches = window.matchMedia(query).matches
-switchTheme(matches)
-window.matchMedia(query).addEventListener('change', event => switchTheme(event.matches))
-
+const matches = window.matchMedia('(prefers-color-scheme: dark)').matches
 initMermaid(matches)
