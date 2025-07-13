@@ -19,7 +19,8 @@ export const postsMeta: Record<string, PostMetainfo> = {
         tags: ['history'],
         description: '',
         date: '2025-01-07',
-        include: ['index.js', 'data.json']
+        include: ['index.js', 'data.json'],
+        draft: true
     },
     test: {
         title: 'test post',
@@ -27,5 +28,11 @@ export const postsMeta: Record<string, PostMetainfo> = {
         description: 'test post',
         date: '1970-01-01',
         draft: true
-    }
+    },
+    'function-coloring-is-inevitable': {
+        title: 'Zig’s new I/O: function coloring is inevitable?',
+        tags: ['programming', 'language design'],
+        description: 'Functions always have color and Zig\'s new I/O won\'t help it',
+        date: '2025-13-07'
+    },
 }
