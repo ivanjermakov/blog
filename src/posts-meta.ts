@@ -37,6 +37,6 @@ export const postsMeta: Record<string, PostMetainfo> = {
         title: 'Zig’s new I/O: function coloring is inevitable?',
         tags: ['programming', 'language design'],
         description: 'Functions always have color and Zig\'s new I/O won\'t help it',
-        date: '2025-13-07'
+        date: '2025-07-13'
     },
 }
