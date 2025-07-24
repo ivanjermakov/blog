@@ -65,3 +65,6 @@
   - many games tweak physics for gameplay purposes making it unrealistic
     - GTA V bike gliding
     - Trials Rising fender grab and vertical climbing
+- [ ] the history of simple software
+    - clash with VC strategy
+- [ ] hackable software
