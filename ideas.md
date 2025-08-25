@@ -4,7 +4,7 @@
 - [ ] how this blog is built
 - [ ] airpods on linux with pipewire
 - [ ] colored emojis in linux terminal
-- [ ] should site has dark mode setting? (dark reader vs theming)
+- [ ] should site has dark mode setting? (dark reader vs css theming vs prefers-color-theme)
 - [ ] sites should be so simple that you can read them without a browser
 - [ ] world of ergonomic mechanical keyboards
 - [ ] advent of code as a motivation to learn something new
@@ -68,3 +68,10 @@
 - [ ] the history of simple software
     - clash with VC strategy
 - [ ] hackable software
+- [ ] another git trick you will use `git update-index --assume-unchanged`
+- [ ] seamless Tailscale and LAN DNS names: simplest approach
+- [ ] phones are too big for PC users
+- [ ] your website does not need a search bar
+    - put whole content on the screen so users can <c-f>
+- [ ] the internet? it's just 4 websites
+- [ ] github code search is really powerful
