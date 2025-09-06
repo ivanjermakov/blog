@@ -74,4 +74,21 @@
 - [ ] your website does not need a search bar
     - put whole content on the screen so users can <c-f>
 - [ ] the internet? it's just 4 websites
+    - hostile place for tech-savvy and privacy-aware users
 - [ ] github code search is really powerful
+- [ ] "screenshot" programs
+    - every text editor is a `cat`
+    - interactivite programs inherently require functionality useful without interactivity
+- [ ] behavior and data are not the same
+    - why Zig has no first class functions/closures
+- [ ] programming language from first principles
+    - what is inconvenient about writing raw machine code?
+        * platform specific
+        * no type system
+        * manual register selection
+        * error-prone control flow
+    - where is the boundary between language features and libraries?
+        * userland mechanisms to extend the language? macros, comptime
+    - where is the boundary between comptime and runtime?
+    - what features C lacks and what feels dated?
+    - C ABI compartibility is everything
