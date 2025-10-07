@@ -67,7 +67,6 @@
     - Trials Rising fender grab and vertical climbing
 - [ ] the history of simple software
     - clash with VC strategy
-- [ ] hackable software
 - [ ] another git trick you will use `git update-index --assume-unchanged`
 - [ ] seamless Tailscale and LAN DNS names: simplest approach
 - [ ] phones are too big for PC users
@@ -92,3 +91,11 @@
     - where is the boundary between comptime and runtime?
     - what features C lacks and what feels dated?
     - C ABI compartibility is everything
+- [ ] how programming for fun is different
+    - world of hobby programming
+    - "get shit done" mentality
+- [ ] programmer assumptions
+    - what makes programs incorrect so much that rewrite is needed
+    - billion dollar mistakes stories were caused by it
+    - how to assert assumptions are correct
+    - "premature optimization is evil" - weak and strong assumpitons

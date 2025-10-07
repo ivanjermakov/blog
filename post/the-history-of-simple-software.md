@@ -75,3 +75,11 @@ of console interface prevalence.
 
   - [Minuteman D-17b: The Desktop Computer Was Born in an ICBM [video]](https://www.youtube.com/watch?v=MJPnZzZtswc)
   - [The First Digital Flight Computer That Was Actually Any Good: The SAAB Viggen's CK37 [video]](https://www.youtube.com/watch?v=zf6bZBV7EWo)
+
+## Ref
+
+  - https://en.wikipedia.org/wiki/Wirth%27s_law
+  - https://en.wikipedia.org/wiki/Worse_is_better
+  - https://web.stanford.edu/class/archive/cs/cs240/cs240.1236/old//sp2014/readings/worse-is-better.html
+  - https://en.wikipedia.org/wiki/Object-oriented_programming
+  - https://en.wikipedia.org/wiki/Jamie_Zawinski#Zawinski's_Law
