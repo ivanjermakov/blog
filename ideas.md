@@ -99,3 +99,6 @@
     - billion dollar mistakes stories were caused by it
     - how to assert assumptions are correct
     - "premature optimization is evil" - weak and strong assumpitons
+- [ ] good things don't need to be popular
+    - what is the year of linux desktop
+    - how popularity forces products to appeal to wider audience which spoils niche audience

@@ -89,7 +89,7 @@ p {
 }
 
 h2 {
-    border-bottom: 2px solid var(--light);
+    border-bottom: 1px solid var(--light);
 }
 
 .row {

@@ -89,8 +89,41 @@ ps aux | grep conky | grep -v grep | awk '{print $2}' | xargs kill
 This is a great starting point to gradually explore the world of programming, along with [visual scripting](https://en.wikipedia.org/wiki/Visual_programming_language)
 and [problem solving games](https://www.zachtronics.com/).
 
-"I'm ready to write some code!" - you said.
-Good, the rest of this post is for amateur cooks and professional chefs who would like to make meals for themselves.
+## Profession vs passion
+
+When I was deciding what career path to choose I thought that every programmer is as passionate about computers as
+I am - writing small programs/games, consuming videos/podcasts/talks/posts in the free time.
+Turned out a vast majority of programmers primarily do it because it is one of the highest paying jobs.
+And their interest is not in learning something cool about computers, but how to climb the career ladder,
+stay in the loop with demanded skills needed in the resume, and coming up with a novel business idea to become
+a successful CEO and make millions.
+
+Too bad social media makes no distinction between the two, especially considering that the [biggest hacker community](https://news.ycombinator.com)
+is a daughter product of a venture capital startup accelerator.
+While I understand the desire of making a fortune, there is often a conflict of interest between
+making a good product and making money, resulting in [enshittification](https://en.wikipedia.org/wiki/Enshittification).
+
+I believe that making software with love and of goodwill would be net-positive for the hacking community.
+Rest of this post assumes you would like to write (or contribute to) software for yourself, friends, and other hackers.
+
+## Customizability
+
+Software customization can be provided on multiple levels (desc. by user experience, asc. by capabilities):
+
+  - UI settings
+  - Configuration files
+  - Mods/plugins
+  - Source code patches (differ from the latter by requiring no reading by the user, as in "just apply a patch")
+  - Source code changes
+
+There is no way to provide better customizability than via source code modification.
+This of course has a couple of asterisks (will get to it in [The bad](#the-bad) section), but in the context of software for hackers fits well.
+
+Note that configuration via editing source code does not mean that everything is hardcoded and statically baked into the executable.
+Customization might include a new command line argument or even an external configuration system
+(although going against `doing not more and not less than what the user needs`).
+In practice, a programming language is superior to any configuration file formats such as `json` or `yaml`.
+[Zig build system](https://ziglang.org/learn/build-system/) is a great example of that.
 
 ## Suckless
 
@@ -100,8 +133,7 @@ X11 window manager [dwm](https://dwm.suckless.org/), terminal emulator [st](http
 menu utility [dmenu](https://tools.suckless.org/dmenu) and [others](https://suckless.org/other_projects/).
 
 What distinguishes suckless software from other personal use programs developed today is that configuration is done
-directly in the source code. This also means that traditional way of distributing software in binaries doesn't work -
-full source code and build instructions are needed.
+directly in the source code, giving ultimate customization freedom.
 
 ## So what is hackable software
 
@@ -127,8 +159,8 @@ Think about designing a bicycle not knowing it would be needed to make it a moto
 ### Software is distributed as source code, compiled by the user
 
 Because users need to configure programs by modifying the source code, they need to have it in full.
-Also, please provide build instructions in case it's not obvious from the build system config (`npm run build` or
-`cargo build` or `zig build` or `make`)
+Also, please provide build instructions in case it's not obvious from the build system config
+(`npm run build` or `zig build` or `make`).
 
 ### Software is extended either by the user directly, or by applying source code patches distributed as diff files
 
@@ -139,7 +171,7 @@ It is also encouraged to share your extensions with others who can find it usefu
 
 ## Evaluation
 
-Why would anyone use it, who is it for, and what are drawbacks.
+> Hackable software: why would anyone use it, who is it for, and what are drawbacks
 
 ### The good
 
@@ -158,9 +190,11 @@ Providing clear build instructions is a good idea though.
 For user:
 
   - No [bloat](https://en.wikipedia.org/wiki/Software_bloat). Program you get is simple and straightforward.
-  - Adding new functionality is as simple as it can be. Making changes to a 1k LOC codebase is a thousand times simpler
+  - Adding new functionality is as simple as it can be. Making changes to a 1K LOC codebase is a thousand times simpler
 than to a 1M LOC one.
   - Native compilation. Since you compile it on your machine, compiler gets best hardware optimizations.
+  - Control. Having original source code means no one can take it back from you.
+Except if it it relies on external services/dependencies of course.
 
 ### The bad
 
@@ -177,41 +211,40 @@ It might be a good idea to use a programming language directly to describe a bui
 or [nob.h](https://github.com/tsoding/nob.h)).
   - Only programmers could use your program. Hackable software is a bad approach to make commercial software, won't
 work for a game you would want to sell on Steam.
-  - Works well for executable programs, for libraries - not so much. Libraries need to have stable API to be generally
-useful and this is not feasible. Solution is to submodule a library into the project so that its source is controlled
-(not that uncommon in C/C++ land anyway).
+  - Works well for executable programs, for libraries - not so much.
+Libraries need to have stable API to be generally useful and this is not feasible.
+Solution is to submodule a library into the project so that its source is controlled (not that uncommon in C/C++ land anyway).
   - Only computer users could use your program. Doesn't seem feasible to modify and recompile programs on smartphones,
 gaming consoles, vacuum cleaners...
   - Not every piece of software can be small and concise. My favorite example is W3C browser specification, which is
 [114 million words long](https://drewdevault.com/2020/03/18/Reckless-limitless-scope.html).
 Same would be true to other spec-dependent software: OS components, hardware drivers, embedded firmware.
-Does not imply that we should not try to keep is simple and not fight back against incidental complexity.
+Does not imply that we should not try to keep it simple and not fight back against incidental complexity.
     ```text
                          Software hackability
 
-    how difficult it
-    is to write
-    from scratch
-          │                             Web browser
-          │                         
-          │                                      OS
-          │
-          │
-          │                           Text editor
-          │
-          │                       Terminal emulator
+    how difficult to
+    write from scratch
+          │🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙 Web browser
+          │🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙 OS         
+          │🮙🮙🮙🮙not worth it🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙            
+          │🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙            
+          │🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙                 
+          │🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙🮙          Text editor  
+          │🮙🮙🮙🮙🮙🮙🮙🮙🮙                               
+          │🮙🮙                     Terminal emulator
           │                            App launcher
           │          ┌────────────────────────────┐
           │          │     simple automation      │
           │          │          scripts           │
           │          └────────────────────────────┘
-          └──────────────────────────────────────── how often it is needed
-                                                    and how much
-                                                    customization is desired
+          └──────────────────────────────────────── how often used
+                                                    and customized
     ```
-  - Common denominator does not exist. There might be programs for which picking the core functionality is really
-tricky, because every user's workflow is [very different](https://xkcd.com/1172/). This might mean that such program
-should not exist... Anyway, use common sense when deciding what is considered core functionality and what not.
+  - Common denominator does not exist.
+There might be programs for which picking the core functionality is really tricky, because every user's workflow is [very different](https://xkcd.com/1172/).
+This might mean that such program wants to do too much.
+Anyway, use common sense when deciding what is considered core functionality and what not.
   - Maintaining patches is not much different from maintaining a program with all patches applied all at once.
 Facilitating factor is that it's sometimes okay for patches to be broken (not applying cleanly), since resolving
 conflicts is much easier than writing featrue from scratch.
@@ -220,8 +253,8 @@ stuff might be daunting. Seek other things in life that bring enjoyment, and tak
 
 ## Plug
 
-This post is a formulation of design ideas and principles I followed developing [hat](https://github.com/ivanjermakov/hat)
-- modal text editor for modern terminals.
+This post is a formulation of design ideas and principles I followed developing
+[hat - modal text editor for modern terminals](https://github.com/ivanjermakov/hat).
 
 | ![Screenshot select](https://raw.githubusercontent.com/ivanjermakov/hat/refs/heads/master/img/screenshot-select.png) | ![Screenshot select](https://raw.githubusercontent.com/ivanjermakov/hat/refs/heads/master/img/screenshot-find.png) |
 |-----------------------------|-----------------------------|
@@ -233,11 +266,23 @@ I'm an active [neovim](https://github.com/neovim/neovim) user, and I found that 
 And after reading a bunch of neovim's source code I can confidently say that it is not as simple at it looks (depending
 on how you read it, it might be a compliment to its UI).
 
+For example, neovim's [indentation logic](https://github.com/neovim/neovim/blob/master/src/nvim/indent.c)
+is about a half of the whole hat's source code.
+Not mentioning features that even experienced neovim users didn't know existed
+(no surprise, not everybody has [10 hours to read through the docs](https://www.youtube.com/watch?v=rT-fbLFOCy0)).
+
+I decided that I want to make a text editor that I can configure exactly how I want it, i.e. making an ultimate
+[Personalized development environment](https://www.youtube.com/watch?v=QMVIJhC9Veg).
+And by making it for myself it might be useful for others with a similar goal.
+I tried keeping the core functionality rich enough for experienced vim users but not bloat it with things one would never use.
+I also made a couple of [patches](https://github.com/ivanjermakov/hat?tab=readme-ov-file#functionality-available-in-patches)
+for niche features I need that didn't worth getting into the core version.
+
 ## Rant on abstraction
 
-And developing neovim plugins or tweaking the config is problematic because it's _abstract_. You don't need fundamental
-knowledge to do that, but specific _neovim knowledge_. And more abstract technology becomes, the harder it gets to gain
-such knowledge.
+And developing neovim plugins or tweaking the config is problematic because it's _abstract_.
+You don't need fundamental computer knowledge to do that, but specific _neovim knowledge_.
+And more abstract technology becomes, the harder it gets to gain such knowledge.
 
 We can go a level higher and talk about beginner neovim users who decide to start their journey with [neovim distributions](https://github.com/topics/neovim-configuration)
 or even [distribution managers](https://lazyman.dev).
@@ -249,13 +294,40 @@ rather hides complexity under the rug.
 My advice to picking the right abstraction level is to go as low as it is reasonable for your problem/knowledge and be
 cautious of being too abstract. Abstraction is good until you need specifics of what it is hiding, then it falls apart.
 
+## LLMs
+
+While making this post I accidently stumbled upon Karan's [post](https://mrkaran.dev/posts/ai-home-cooked-software/)
+that is using similar programming-cooking analogy, but in context of AI-assisted programming.
+I agree that [LLM tools](https://en.wikipedia.org/wiki/Large_language_model#Extensibility) make programming more
+approachable, quite similar to no-code and low-code development (while also suffering [similar problems](https://nmn.gl/blog/vibe-coding-fantasy)).
+But this time, instead of selecting dropdowns and connecting boxes it's chatting in a natural language with an LLM agent.
+
+This has not much to do with hackable software, I treat is like a tool to assist boring parts of development,
+not replace it entirely (why would I want to replace what I'm doing for fun?)
+
 ## Further reading
 
   - [Hacks at MIT](https://en.wikipedia.org/wiki/Hacks_at_the_Massachusetts_Institute_of_Technology)
   - [Suckless Software for Everyone: You too can LARP as a good programer! (SELF 2023) (talk)](https://www.youtube.com/watch?v=slIxE8oYzus)
   - [The beauty of Unix pipelines](https://prithu.dev/posts/unix-pipeline/)
+  - [Don’t Take VC Funding – It Will Destroy Your Company](https://eidel.io/vc-funding/)
   - [Suckless software](https://suckless.org/)
   - [hat - modal text editor for modern terminals](https://github.com/ivanjermakov/hat)
+  - [Rare vim tips you probably don't know (video)](https://www.youtube.com/watch?v=UjWrhW19PtQ)
   - [The Configuration Complexity Clock](https://mikehadlow.blogspot.com/2012/05/configuration-complexity-clock.html?m=1)
   - [Malleable software - Restoring user agency in a world of locked-down apps](https://www.inkandswitch.com/essay/malleable-software/#existing-approaches)
+  - [Why do software developers love complexity?](https://kyrylo.org/software/2025/08/21/why-do-software-developers-love-complexity.html)
 
+## Appendix
+
+In case you also want to develop something following hackable software ideas, add `hackable-software` tag to it
+and put its philosophy in README:
+
+```text
+Software is:
+  - doing not more and not less than what the user needs
+  - made for users capable of reading and customizing its source code
+  - distributed as source code, compiled by the user
+  - not meant to be developed forever and its final state should be described by its feature set from the beginning
+  - extended either by the user directly, or by applying source code patches distributed as diff files
+```

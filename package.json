@@ -7,6 +7,7 @@
         "build": "./build.sh",
         "build:site": "bun run src/index.ts",
         "build:human-inventions-and-discoveries": "bun run post/human-inventions-and-discoveries/index.ts",
+        "watch": "find **/*.md **/*.css | entr npm run build:site",
         "test": "bun test src",
         "ci": "npm run test",
         "clean": "rm -rf dist",
