@@ -33,10 +33,9 @@ export const postsMeta: Record<string, PostMetainfo> = {
     },
     'hackable-software': {
         title: 'Hackable software',
-        tags: ['programming'],
+        tags: ['programming', 'hackable-software'],
         description: 'The idea of writing programs for hackers',
-        date: '2025-10-07',
-        draft: true
+        date: '2025-10-28',
     },
     'human-inventions-and-discoveries': {
         title: 'greatest human inventions and discoveries',
