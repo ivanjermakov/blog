@@ -24,7 +24,7 @@
 }
 
 .content blockquote {
-    background: var(--blockquote);
+    background-color: var(--blockquote);
     padding-inline: .5rem;
     padding-block: .15rem;
     margin-inline: 0;
@@ -71,17 +71,15 @@
     color: var(--special);
 }
 
-.content code {
-    background: var(--light);
-}
-
-.content p code {
-    padding: .1rem .3rem;
+.content pre {
+    background-color: var(--light);
+    padding: .5rem .5rem;
     border-radius: .3rem;
 }
 
-.content .hljs {
-    background: var(--light) !important;
+.content p code {
+    background-color: var(--light);
+    padding: .1rem .3rem;
     border-radius: .3rem;
 }
 
@@ -109,5 +107,5 @@ th, td {
 }
 
 th {
-    background: var(--light);
+    background-color: var(--light);
 }

@@ -6,5 +6,10 @@
         --light: #222222;
         --blockquote: rgba(204, 204, 204, .1);
         --special: #3d7cf3;
+
+        --comment: #9998a8;
+        --keyword: #d3a8ef;
+        --string: #a6d189;
+        --number: #ffb499;
     }
 }

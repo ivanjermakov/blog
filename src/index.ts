@@ -1,7 +1,9 @@
 import { spawn } from 'child_process'
 import { existsSync, mkdirSync } from 'fs'
+import { load } from 'cheerio'
 import { copyFile, cp, mkdir, readFile, readdir, writeFile } from 'fs/promises'
 import { PostMetainfo, postsMeta } from './posts-meta'
+import { syntaxHighlight } from './highlight'
 
 const mermaidImport = `\
 <script src="https://unpkg.com/mermaid@11.2.1/dist/mermaid.min.js"></script>
@@ -179,8 +181,8 @@ function replaceVariables(template: string, vars: Record<string, string>): strin
     return cleaned
 }
 
-function mdToHtml(md: string): Promise<string> {
-    return new Promise((resolve, reject) => {
+async function mdToHtml(md: string): Promise<string> {
+    const html = await new Promise<string>((resolve, reject) => {
         const extensions = [
             'smart',
             'pipe_tables',
@@ -221,6 +223,20 @@ function mdToHtml(md: string): Promise<string> {
         process.stdin.write(md)
         process.stdin.end()
     })
+    const query = load(html)
+    for (const e_ of query('pre code')) {
+        const e = query(e_)
+        const code = query(e).text()
+        const lang = (e.attr('class') ?? '')
+            .split(' ')
+            .filter(c => c !== 'sourceCode')
+            .at(0)
+        if (lang) {
+            const highlit = await syntaxHighlight(lang, code)
+            e.empty().append(highlit)
+        }
+    }
+    return query.html()
 }
 
 function makeRssFeed(): string {

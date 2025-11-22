@@ -19,7 +19,6 @@
 
 	<link rel="stylesheet" title="light" href="/css/github.css" disabled="disabled">
 	<link rel="alternate stylesheet" title="dark" href="/css/github-dark.css" disabled="disabled">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
 	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script>
 
@@ -58,7 +57,6 @@
     const matches = window.matchMedia(query).matches
     switchTheme(matches)
     window.matchMedia(query).addEventListener('change', event => switchTheme(event.matches))
-    hljs.highlightAll()
 </script>
 
 $body$

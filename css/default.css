@@ -2,9 +2,14 @@
     --fg: black;
     --dimm: #424242;
     --bg: white;
-    --light: #f2f2f2;
+    --light: #f6f6f6;
     --blockquote: rgba(31, 31, 31, .1);
     --special: #1b54bd;
+
+    --comment: #444444;
+    --keyword: #5c2e81;
+    --string: #3a6e1f;
+    --number: #a65437;
 }
 
 * {
@@ -14,7 +19,7 @@
 html, body {
     font-family: 'Nunito Sans', serif;
     margin: 0;
-    background: var(--bg);
+    background-color: var(--bg);
     color: var(--fg);
     font-size: 14px;
 }
@@ -150,7 +155,7 @@ h2 {
 }
 
 .tags a {
-    background: var(--light);
+    background-color: var(--light);
     text-decoration: none;
     padding: .25rem;
     border-radius: .25rem;

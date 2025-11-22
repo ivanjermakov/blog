@@ -1,9 +1,3 @@
----
-title: test post
-tags: meta, tag1, tag2
-description: just a test, don't worry
----
-
 # h1 Heading 8-)
 
 ## h2 Heading

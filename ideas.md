@@ -102,3 +102,19 @@
 - [ ] good things don't need to be popular
     - what is the year of linux desktop
     - how popularity forces products to appeal to wider audience which spoils niche audience
+- [ ] you might not need server side authentication
+    - digital signatures as a solution to storing credentials
+- [ ] just read the source code
+    - This would be my top 1 advice to become a better programmer: read the source code.
+There is no magic behind whatever technology you're using, and most likely you can read and understand how it works.
+Zig compiler and zig std are not much different from project from what you're doing -
+and since you interact with them so much, take time and understand how it works under the hood.
+Programming is understanding, deeper the better.
+With this superpower text documentation becomes optional - source code is the golden copy of logic and behavior,
+verified by compiler and a test suite, so vastly more correct and comprehensive than any plain english text.
+This advice is great even outside of programming, but learning in general.
+Don't be afraid to seek the answers, go for information sources, deepen your knowledge.
+- [ ] peeling off layers of abstraction
+    - take a solution to some problem and decompose it down, exposing every abstraction beneath,
+all the way to CPU instructions/microcode/electric signals
+    - famous example of this is "what is behind a hello world program"
