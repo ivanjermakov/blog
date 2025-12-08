@@ -1,0 +1,20 @@
+.quotes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    .quote {
+        display: flex;
+        flex-direction: column;
+
+        .text {
+            font-size: 1.5rem;
+        }
+
+        .by {
+            align-self: end;
+            color: var(--dimm);
+        }
+    }
+}

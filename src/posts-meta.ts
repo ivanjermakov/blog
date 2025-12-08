@@ -37,6 +37,13 @@ export const postsMeta: Record<string, PostMetainfo> = {
         description: 'The idea of writing programs for hackers',
         date: '2025-10-28',
     },
+    'songs-of-syx-quotes': {
+        title: 'All quotes from Songs of Syx',
+        description: 'Wise words of burned preachers of Syx',
+        tags: ['reverse-engineering'],
+        date: '2025-12-08',
+        include: ['index.css'],
+    },
     'human-inventions-and-discoveries': {
         title: 'greatest human inventions and discoveries',
         tags: ['history'],

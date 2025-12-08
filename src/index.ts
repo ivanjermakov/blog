@@ -155,6 +155,7 @@ async function makePostPage(name: string, metainfo: PostMetainfo, content: strin
     let head = ''
     if (metainfo.features?.includes('mathjax')) head += mathjaxImport
     if (metainfo.include?.includes('index.js')) head += `<script type="module" src="${name}/index.js"></script>`
+    if (metainfo.include?.includes('index.css')) head += `<link rel="stylesheet" href="${name}/index.css"/>`
 
     return replaceVariables(templates['index.html'], {
         title: metainfo.title,

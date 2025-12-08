@@ -118,3 +118,8 @@ Don't be afraid to seek the answers, go for information sources, deepen your kno
     - take a solution to some problem and decompose it down, exposing every abstraction beneath,
 all the way to CPU instructions/microcode/electric signals
     - famous example of this is "what is behind a hello world program"
+- [ ] result of work cannot be more valuable than the amount of effort that was put into it
+    - why making something accessible to everybody makes it worth less
+    - everyone can code/make music/art/write now, but nobody cares about such output
+- [ ] free business email with custom domain and gmail backend
+    - with improvmx
