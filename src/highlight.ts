@@ -15,7 +15,7 @@ const theme: ThemeInput = {
 export async function syntaxHighlight(lang: string, code: string): Promise<string> {
     const highlighter = await createHighlighter({
         themes: [theme],
-        langs: ['zig', 'typescript', 'javascript', 'haskell', 'bash']
+        langs: ['zig', 'typescript', 'javascript', 'haskell', 'bash', 'c']
     })
     return highlighter.codeToHtml(code, { lang, theme: 'theme', structure: 'inline' })
 }

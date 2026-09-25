@@ -59,4 +59,18 @@ export const postsMeta: Record<string, PostMetainfo> = {
         date: '1970-01-01',
         draft: true
     },
+    'programming-job-vs-hobby': {
+        title: 'Programming: job versus hobby',
+        tags: ['programming'],
+        description: 'Vast differences of programming for money and for fun',
+        date: '1970-01-01',
+        draft: true
+    },
+    'state-of-zig-gamedev': {
+        title: 'State of Zig game development',
+        tags: ['programming', 'gamedev'],
+        description: 'Journey of making a game with Zig & WebGPU',
+        date: '2026-09-25',
+        draft: false
+    },
 }

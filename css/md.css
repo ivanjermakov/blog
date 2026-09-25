@@ -75,6 +75,7 @@
     background-color: var(--light);
     padding: .5rem .5rem;
     border-radius: .3rem;
+    overflow: auto;
 }
 
 .content p code {

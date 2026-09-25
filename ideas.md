@@ -123,3 +123,21 @@ all the way to CPU instructions/microcode/electric signals
     - everyone can code/make music/art/write now, but nobody cares about such output
 - [ ] free business email with custom domain and gmail backend
     - with improvmx
+- [ ] attention economy in modern videogames
+    - factorio vs a game about digging a hole
+    - rise of incremental games
+    - rise of gambling themed games
+- [ ] printf tells a lot about the language
+    - in C it's unchecked, common source of bugs
+    - in Rust it's a macro
+    - in Zig it's a comptime function
+    - in JS it does not exist, and string interpolation is very much unchecked, `${['hello', 'world']}` is `[Object object]`
+- [ ] C won because it didn't change
+    - how breaking changes and post-release features make programming languages worse
+- [ ] Joy from constraints
+    - using dumb phone can be good for mental health
+    - simulation games are just constrained model of the real world
+- [ ] describing a problem in simple terms does not make a problem simple
+    - answer to a real world problem won't fit into a single sentence
+    - why spec driven development is doomed to fail
+    - furthermore, many hard problems can be fully described simply
