@@ -16,7 +16,7 @@ As a bonus I already had experience making web based games so it was a breeze.
 
 Prototype turned out great, but issues were obvious:
 
-  - terrible performance - updating world matrices of 200-ish objects took ~4ms, which is a quater of the whole frame
+  - terrible performance - updating world matrices of 200-ish objects took ~4ms, which is a quarter of the whole frame
 budget.
 GPU was pegged to 100% with a basic scene (1440p60, 200 meshes, 4 shadow map cascades, bloom pass, FXAA), supposedly
 very sane for my GTX 1050 mobile.
@@ -64,9 +64,9 @@ Picking graphics API these days might be even harder than picking a language, bu
 Linux and Windows native support narrows the list down to OpenGL, Vulkan, and WebGPU.
 As OpenGL is [quite a mess](http://www.joshbarczak.com/blog/?p=154) for beyond-tutorial graphics programming
 and Vulkan is [more verbose](https://github.com/SaschaWillems/Vulkan/blob/master/examples/triangle/triangle.cpp) than
-enterprise Java (which I've been writing professionaly for my whole career), I landed on WebGPU.
+enterprise Java (which I've been writing professionally for my whole career), I landed on WebGPU.
 In fact, native WebGPU support multiple backends making it a nice abstraction over Vulkan.
-And similar to Zig, I also had [great expirience](https://github.com/ivanjermakov/moonlight) working with browser
+And similar to Zig, I also had [great experience](https://github.com/ivanjermakov/moonlight) working with browser
 implementation of WebGPU (even though it barely worked on my standard Firefox+Linux setup).
 
 There are two major WebGPU native implementations, [wgpu](https://github.com/gfx-rs/wgpu) and [dawn](https://dawn.googlesource.com/dawn).
@@ -96,7 +96,7 @@ wrapped via [ztracy](https://github.com/zig-gamedev/ztracy).
 Making GUI from scratch is a fun challenge, but for debug menus [imgui](https://github.com/ocornut/imgui) is well established.
 Wrapped via [zgui](https://github.com/zig-gamedev/zgui).
 
-I will also need audio API which will likely be [FMOD](https://www.fmod.com), but I haven't tackled sfx yet.
+I will also need audio API which will likely be [FMOD](https://www.fmod.com), but I haven't tackled SFX yet.
 
 ## Difficulties
 
@@ -137,7 +137,7 @@ What will the following expression produce?
 Any definite answer would be wrong, because [it depends on the backend and `OptimizeMode`](https://github.com/ziglang/zig/issues/24179).
 On `x86_64-linux-gnu` it gives `8 8` in Debug and `4 4` in Release.
 
-I naively used `za.Vec2U`s in my uniforms struct and was quite surprized to see my shaders work in debug but break in
+I naively used `za.Vec2U`s in my uniforms struct and was quite surprised to see my shaders work in debug but break in
 release mode.
 
 Worst part is that there is no concise fix for it. I [had to](https://github.com/kooparse/zalgebra/commit/ddbc799409a3e7a484a3986ebc7e30fdd9623f82)
@@ -188,7 +188,7 @@ wgpu pipeline/bind group/pass validations.
 
 Many projects just raw dog external dependencies into their project without any reference to its version or origin.
 On a bright side, it was a great opportunity to learn how to properly use [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
-to vendor external deps.
+to vendor external dependencies.
 
 ### zig + imgui + wgpu = big misery
 
@@ -255,7 +255,8 @@ Box3D does not yet expose a standalone save-state / restore API.
 Good news I own my dependency sources and can implement it myself, how hard can it be?
 
 Existing record/replay system in Box3D is focused on providing devs with a debug replay of a simulation.
-Naively deserializing it into the same world is not possible with current API, you read replay world ID from deserialized replay object.
+Naively deserializing it into the same world is not possible with current API, you read replay world ID from
+a deserialized replay object.
 But updating Box3D to accept existing world breaks simulation and existing body/joint/shape references.
 
 Save/restore is not a thing yet because serialized state should be self-contained, meaning it should reproduce the whole world exactly from bytes alone.
@@ -290,7 +291,7 @@ Talking about patching Box3D like it was easy is not really true and I procrasti
 to understand Box3D's snapshot serialization logic.
 Another possible approach was to switch back from Box3D to familiar Jolt as I'm sure it has all functionality I need.
 
-Did you know C++ library can't be used directly as C-compartible ABI? It needs a shim like any other language.
+Did you know C++ library can't be used directly as C-compatible ABI? It needs a shim like any other language.
 Thinking more about it it makes perfect sense since C++ has a bazillion features foreign to ABI.
 
 Jolt allegedly has [Zig bindings](https://github.com/zig-gamedev/zphysics) and 3 ([three!](https://github.com/jrouwe/JoltPhysics/blob/7ab5be3228a8677268d648a26f753ef507f4b96a/README.md?plain=1#L157))
@@ -325,7 +326,7 @@ Haven't tried Windows[^3] build yet, but expecting a bunch more problems buildin
   - RenderDoc is very useful.
   - gdb is often better than `printf`s, but I can't wait for Linux support in the [RAD Debugger](https://github.com/EpicGames/raddebugger).
   - C++ library cannot be used directly as C ABI and needs shims like any other language.
-  - `wgpu` and `dawn` while targeting the same API are not interchangable.
+  - `wgpu` and `dawn` while targeting the same API are not interchangeable.
   - Writing `build.zig` from scratch is not that hard, but breaking changes twice a year is still annoying.
   - Making sure size and alignment of structs across CPU/GPU boundary is not always trivial.
   - CPUs are stupidly fast if you compile your code natively.
@@ -344,7 +345,7 @@ Validators in wgpu are capable of detecting many misconfigurations early (on fir
 High quality game physics is finally available for indie devs with the release of Jolt and now Box3D.
 
 While web is an amazing platform for delivering content and providing service, it still lacks
-performance and tooling needed for joyfull videogame development.
+performance and tooling needed for joyful game development.
 
 ## Be useful
 
@@ -378,4 +379,4 @@ I invite you to the [Substep Game's](https://substepgames.com) [discord](https:/
 [^1]: while it might be good for performance, tooling is non-existent, and writing/generating JS shims is not fun.
 [^2]: would be not too hard to troubleshoot this CPU-side with `std.mem.asBytes(&uniforms)`.
 [^3]: imagine having a Windows machine to play games in 2026.
-[^4]: now I understand why everyone is prasing "bindless" in Vulkan.
+[^4]: now I understand why everyone is praising "bindless" in Vulkan.
